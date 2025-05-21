@@ -5,9 +5,8 @@ const MoreModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <>
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" onClick={onClose}></div>
-      <div className="fixed bottom-[70px] left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm bg-primary text-white rounded-xl shadow-xl p-4 z-50 border border-primary-light">      <div className="flex justify-between items-center mb-3">
+    <>      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" onClick={onClose}></div>
+      <div className="fixed bottom-[70px] left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm bg-primary text-white rounded-xl shadow-xl p-4 z-50 border border-primary-light"><div className="flex justify-between items-center mb-3">
         <h3 className="text-lg font-nav font-semibold text-white">Más opciones</h3>
         <button onClick={onClose} className="text-white/80 hover:text-white">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

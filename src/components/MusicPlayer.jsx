@@ -34,12 +34,9 @@ const MusicPlayer = ({ audioSrc }) => {
       audio.removeEventListener('ended', handleAudioEnd);
     };
   }, [volume]);
-
-  return (
-    <div className="fixed bottom-24 right-4 z-40">
+  return (    <div className="fixed bottom-32 right-4 z-[100]">
       <audio ref={audioRef} src={audioSrc} preload="auto" loop />
-      
-      {showVolume && (
+        {showVolume && (
         <div className="absolute bottom-16 right-1 bg-white/90 p-3 rounded-lg shadow-md mb-2 backdrop-blur-sm border border-primary/20 w-32">
           <label htmlFor="volume-control" className="text-xs text-primary mb-1 block font-serif">Volumen</label>
           <input

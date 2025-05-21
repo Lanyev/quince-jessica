@@ -135,23 +135,19 @@ const Galeria = () => {
               ))
             )}
           </div>
-        )}
-
-        <div className="mt-10 text-center">
+        )}        <div className="mt-10 text-center">
           <p className="font-serif text-primary-light">
             Las fotos del evento se compartirán aquí después de la celebración.
           </p>
-        </div>        
-
-        <PhotoUploader />
+        </div>
       </div>
 
       {/* Lightbox para ver imágenes ampliadas */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4" onClick={closeLightbox}>
-          <div className="relative max-w-5xl max-h-[90vh]" onClick={e => e.stopPropagation()}>
+          <div className="relative w-full max-w-4xl flex flex-col items-center" onClick={e => e.stopPropagation()}>
             <button 
-              className="absolute top-4 right-4 text-white bg-primary rounded-full p-2 hover:bg-primary-light"
+              className="absolute top-2 right-2 text-white bg-primary rounded-full p-2 hover:bg-primary-light z-10"
               onClick={closeLightbox}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -159,12 +155,14 @@ const Galeria = () => {
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
-            <img 
-              src={selectedImage.src} 
-              alt={selectedImage.title}
-              className="max-h-[85vh] max-w-full mx-auto"
-            />
-            <div className="bg-primary py-4 px-6 text-white mt-2 rounded-b-lg">
+            <div className="overflow-auto max-h-[70vh] w-full flex items-center justify-center">
+              <img 
+                src={selectedImage.src} 
+                alt={selectedImage.title}
+                className="object-contain max-h-[70vh] w-auto max-w-full"
+              />
+            </div>
+            <div className="bg-primary py-4 px-6 text-white mt-2 rounded-b-lg w-full">
               <h3 className="text-xl font-script">{selectedImage.title}</h3>
               <p className="mt-1 font-nav text-sm">{selectedImage.description}</p>
             </div>

@@ -65,7 +65,7 @@ function App() {
         </div>
         <MusicPlayer audioSrc={audioSrc} />
         <ScrollToTop />
-        <footer className="w-full fixed bottom-0 left-0 right-0 z-50 p-[15px]">
+        <footer className="w-full fixed bottom-0 left-0 right-0 z-10 p-[15px]">
           <Navbar />
         </footer>
       </div>
