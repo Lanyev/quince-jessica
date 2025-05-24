@@ -49,7 +49,7 @@ function App() {
   return (
     <Router>
       <div className="App flex flex-col min-h-screen" style={bgStyle}>
-        <div className="flex-grow pb-[80px]">
+        <div className="flex-grow pb-[65px]">
           <BetterAnimatedRoutes>
             <Route path="/" element={<Inicio />} />
             <Route path="/ceremonia" element={<Ceremonia />} />
