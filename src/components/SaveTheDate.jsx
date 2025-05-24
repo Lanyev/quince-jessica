@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 const SaveTheDate = () => {
   const [isOpen, setIsOpen] = useState(false);
   
-  const eventDate = new Date('June 25, 2025 18:00:00');
-  const eventEndDate = new Date('June 25, 2025 23:59:00');
+  const eventDate = new Date('July 26, 2025 18:00:00');
+  const eventEndDate = new Date('July 26, 2025 23:59:00');
   
   const formatDate = (date) => {
     return date.toISOString().replace(/-|:|\.\d+/g, '');
@@ -77,7 +77,7 @@ END:VCALENDAR`;
           </div>
           
           <p className="text-sm text-gray-600 mb-4 font-serif">
-            25 de Junio, 2025 - 18:00 hrs
+            26 de Julio, 2025 - 18:00 hrs
           </p>
           
           <div className="flex flex-col space-y-2">

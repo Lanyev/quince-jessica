@@ -12,7 +12,7 @@ const Ceremonia = () => {
         </div>
         <div className="mb-4">
           <h3 className="text-lg font-medium">Fecha y Hora</h3>
-          <p className="text-gray-700">Sábado, 25 de Junio de 2025 a las 18:00 horas</p>
+          <p className="text-gray-700">Sábado, 26 de Julio de 2025 a las 18:00 horas</p>
         </div>
         <div>
           <h3 className="text-lg font-medium">Indicaciones</h3>
