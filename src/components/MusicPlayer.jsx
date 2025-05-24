@@ -32,9 +32,15 @@ const MusicPlayer = ({ audioSrc }) => {
 
     return () => {
       audio.removeEventListener('ended', handleAudioEnd);
-    };  }, [volume]);  return (    <div className="fixed bottom-40 right-4 z-[100]">
-      <audio ref={audioRef} src={audioSrc} preload="auto" loop />        {showVolume && (
-        <div className="absolute bottom-20 right-1 bg-white/90 p-3 rounded-lg shadow-md mb-2 backdrop-blur-sm border border-primary/20 w-32">
+    };
+  }, [volume]);
+
+  return (
+    <div className="fixed bottom-48 right-4 z-[100]">
+      <audio ref={audioRef} src={audioSrc} preload="auto" loop />
+      
+      {showVolume && (
+        <div className="absolute bottom-20 right-1 bg-white/90 p-3 rounded-lg shadow-lg mb-2 backdrop-blur-sm border border-primary/20 w-32">
           <label htmlFor="volume-control" className="text-xs text-primary mb-1 block font-serif">Volumen</label>
           <input
             id="volume-control"
@@ -48,15 +54,17 @@ const MusicPlayer = ({ audioSrc }) => {
           />
         </div>
       )}
-        <div className="flex items-center">
+      
+      <div className="flex items-center gap-2">
         <button
           onClick={() => setShowVolume(!showVolume)}
-          className="w-12 h-12 bg-primary/80 rounded-full shadow-md flex items-center justify-center hover:bg-primary-light transition-colors duration-300 mr-2"
+          className="w-14 h-14 bg-primary/80 rounded-full shadow-lg flex items-center justify-center hover:bg-primary transition-colors duration-300 border-2 border-white/30"
           aria-label="Controlar volumen"
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"            width="22"
-            height="22"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -79,14 +87,14 @@ const MusicPlayer = ({ audioSrc }) => {
 
         <button
           onClick={togglePlay}
-          className="w-12 h-12 bg-primary rounded-full shadow-md flex items-center justify-center hover:bg-primary-light transition-colors duration-300"
+          className="w-14 h-14 bg-primary rounded-full shadow-lg flex items-center justify-center hover:bg-primary-light transition-colors duration-300 border-2 border-white/30"
           aria-label={isPlaying ? "Pausar música" : "Reproducir música"}
         >
           {isPlaying ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -101,8 +109,8 @@ const MusicPlayer = ({ audioSrc }) => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -111,12 +119,13 @@ const MusicPlayer = ({ audioSrc }) => {
               strokeLinejoin="round"
               className="text-white"
             >
-              <polygon points="5 3 19 12 5 21 5 3" />
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           )}
         </button>
       </div>
-    </div>  );
+    </div>
+  );
 };
 
 export default MusicPlayer;

@@ -13,6 +13,7 @@ import Galeria from './pages/Galeria';
 import Padrinos from './pages/Padrinos';
 import Chambelanes from './pages/Chambelanes';
 import Regalos from './pages/Regalos';
+import Invitaciones from './pages/Invitaciones';
 
 function App() {
   // La ruta a tu archivo de música - reemplázala cuando tengas tu archivo
@@ -51,7 +52,7 @@ function App() {
   return (
     <Router>
       <div className="App flex flex-col min-h-screen" style={bgStyle}>
-        <div className="flex-grow pb-[70px]">
+        <div className="flex-grow pb-[80px]">
           <BetterAnimatedRoutes>
             <Route path="/" element={<Inicio />} />
             <Route path="/ceremonia" element={<Ceremonia />} />
@@ -61,11 +62,12 @@ function App() {
             <Route path="/padrinos" element={<Padrinos />} />
             <Route path="/chambelanes" element={<Chambelanes />} />
             <Route path="/regalos" element={<Regalos />} />
+            <Route path="/invitaciones" element={<Invitaciones />} />
           </BetterAnimatedRoutes>
         </div>
         <MusicPlayer audioSrc={audioSrc} />
         <ScrollToTop />
-        <footer className="w-full fixed bottom-0 left-0 right-0 z-10 p-[15px]">
+        <footer className="w-full fixed bottom-0 left-0 right-0 z-5 p-[15px]">
           <Navbar />
         </footer>
       </div>

@@ -32,14 +32,17 @@ const ScrollToTop = () => {
       {isVisible && (
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}          exit={{ opacity: 0, scale: 0.8 }}          transition={{ duration: 0.3 }}          onClick={scrollToTop}
-          className="fixed bottom-40 left-4 z-[100] w-10 h-10 bg-primary/80 rounded-full shadow-md flex items-center justify-center hover:bg-primary-light transition-colors duration-300"
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.3 }}
+          onClick={scrollToTop}
+          className="fixed bottom-48 left-4 z-[100] w-14 h-14 bg-primary/80 rounded-full shadow-lg flex items-center justify-center hover:bg-primary transition-colors duration-300 border-2 border-white/30"
           aria-label="Volver arriba"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
