@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import MusicPlayer from './components/MusicPlayer.jsx';
@@ -16,15 +16,14 @@ import Regalos from './pages/Regalos';
 import Invitaciones from './pages/Invitaciones';
 
 function App() {
-  // La ruta a tu archivo de música - reemplázala cuando tengas tu archivo
-  const audioSrc = '/audio/background-music.mp3'; 
+  // La ruta a tu archivo de música con ruta relativa para GitHub Pages
+  const audioSrc = './audio/background-music.mp3'; 
   
   // Estado para el fondo personalizado
   const [bgStyle, setBgStyle] = useState({});
-  
-  useEffect(() => {
+    useEffect(() => {
     // Puedes cambiar esto a la ruta de tu imagen de fondo cuando la tengas
-    const bgImagePath = '/images/backgrounds/bg-pattern.jpg';
+    const bgImagePath = './images/backgrounds/bg-pattern.png';
     
     // Comprobamos si la imagen existe
     const img = new Image();

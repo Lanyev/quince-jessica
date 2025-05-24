@@ -4,6 +4,7 @@ const MusicPlayer = ({ audioSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.7);
   const [showVolume, setShowVolume] = useState(false);
+  const [audioError, setAudioError] = useState(null);
   const audioRef = useRef(null);
 
   const togglePlay = () => {
@@ -26,18 +27,39 @@ const MusicPlayer = ({ audioSrc }) => {
       setIsPlaying(false);
     };
 
+    const handleAudioError = (e) => {
+      console.error('Error loading audio:', e);
+      console.log('Audio source attempted:', audioSrc);
+      setAudioError(`Error al cargar audio: ${e.message}`);
+    };
+
+    const handleAudioCanPlay = () => {
+      console.log('Audio can play now:', audioSrc);
+      setAudioError(null);
+    };
+
     const audio = audioRef.current;
     audio.addEventListener('ended', handleAudioEnd);
+    audio.addEventListener('error', handleAudioError);
+    audio.addEventListener('canplay', handleAudioCanPlay);
     audio.volume = volume;
 
     return () => {
       audio.removeEventListener('ended', handleAudioEnd);
+      audio.removeEventListener('error', handleAudioError);
+      audio.removeEventListener('canplay', handleAudioCanPlay);
     };
-  }, [volume]);
+  }, [volume, audioSrc]);
 
   return (
     <div className="fixed bottom-48 right-4 z-[100]">
       <audio ref={audioRef} src={audioSrc} preload="auto" loop />
+      
+      {audioError && (
+        <div className="absolute bottom-28 right-1 bg-red-100 p-2 rounded-md text-xs text-red-600 w-32 hidden">
+          {audioError}
+        </div>
+      )}
       
       {showVolume && (
         <div className="absolute bottom-20 right-1 bg-white/90 p-3 rounded-lg shadow-lg mb-2 backdrop-blur-sm border border-primary/20 w-32">
