@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import html2canvas from 'html2canvas';
+import { getBackgroundImageUrl } from '../utils/imageUtils';
 
 const InvitationCard = () => {
   const [invitationName, setInvitationName] = useState('');
@@ -90,7 +91,7 @@ const InvitationCard = () => {
             ref={cardRef}
             className="w-full max-w-md aspect-[3/4] bg-primary relative rounded-lg shadow-lg overflow-hidden mb-6"
           >
-            <div className="absolute inset-0 bg-[url('/images/backgrounds/bg-pattern.jpg')] bg-cover bg-center opacity-20"></div>
+            <div className={`absolute inset-0 bg-[url('${getBackgroundImageUrl('bg-pattern.jpg')}')] bg-cover bg-center opacity-20`}></div>
             <div className="absolute inset-0 flex flex-col items-center justify-between p-8 text-white">
               <div className="text-center w-full">
                 <p className="font-serif text-lg tracking-wide">Te invito a mi</p>

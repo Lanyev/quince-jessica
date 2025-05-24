@@ -5,6 +5,7 @@ import MusicPlayer from './components/MusicPlayer.jsx';
 import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
 import BetterAnimatedRoutes from './components/BetterAnimatedRoutes';
+import { getBackgroundImageUrl } from './utils/imageUtils';
 import Inicio from './pages/Inicio';
 import Ceremonia from './pages/Ceremonia';
 import Asistencia from './pages/Asistencia';
@@ -20,10 +21,9 @@ function App() {
   const audioSrc = './audio/background-music.mp3'; 
   
   // Estado para el fondo personalizado
-  const [bgStyle, setBgStyle] = useState({});
-    useEffect(() => {
+  const [bgStyle, setBgStyle] = useState({});  useEffect(() => {
     // Puedes cambiar esto a la ruta de tu imagen de fondo cuando la tengas
-    const bgImagePath = './images/backgrounds/bg-pattern.png';
+    const bgImagePath = getBackgroundImageUrl('bg-pattern.png');
     
     // Comprobamos si la imagen existe
     const img = new Image();

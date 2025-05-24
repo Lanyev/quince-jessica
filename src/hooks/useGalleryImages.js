@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
+import { getGalleryImageUrl } from '../utils/imageUtils';
 
 // Hook personalizado para cargar imágenes dinámicamente
 const useGalleryImages = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const loadImages = async () => {
       try {
@@ -17,12 +17,10 @@ const useGalleryImages = () => {
           'img1 (4).webp',
           'img1 (5).webp',
           'img1 (6).webp'
-        ];
-
-        // Generar array de imágenes con metadatos
+        ];        // Generar array de imágenes con metadatos
         const galleryImages = imageFiles.map((filename, index) => ({
           id: index + 1,
-          src: `/images/gallery/${filename}`,
+          src: getGalleryImageUrl(filename),
           alt: `Jessica Paola - Momento especial ${index + 1}`,
           title: getTitleForImage(index + 1),
           description: getDescriptionForImage(index + 1),
