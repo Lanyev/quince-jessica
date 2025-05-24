@@ -2,7 +2,6 @@
 
 Este proyecto es un sitio web personalizado para la celebración de XV años de Jessica Paola, diseñado para ser móvil-friendly con una interfaz elegante y fácil de usar.
 
-![Quinceañera](public/images/backgrounds/bg-pattern.jpg)
 
 ## 🌟 Características
 

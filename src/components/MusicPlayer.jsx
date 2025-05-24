@@ -32,12 +32,9 @@ const MusicPlayer = ({ audioSrc }) => {
 
     return () => {
       audio.removeEventListener('ended', handleAudioEnd);
-    };
-  }, [volume]);
-  return (    <div className="fixed bottom-32 right-4 z-[100]">
-      <audio ref={audioRef} src={audioSrc} preload="auto" loop />
-        {showVolume && (
-        <div className="absolute bottom-16 right-1 bg-white/90 p-3 rounded-lg shadow-md mb-2 backdrop-blur-sm border border-primary/20 w-32">
+    };  }, [volume]);  return (    <div className="fixed bottom-40 right-4 z-[100]">
+      <audio ref={audioRef} src={audioSrc} preload="auto" loop />        {showVolume && (
+        <div className="absolute bottom-20 right-1 bg-white/90 p-3 rounded-lg shadow-md mb-2 backdrop-blur-sm border border-primary/20 w-32">
           <label htmlFor="volume-control" className="text-xs text-primary mb-1 block font-serif">Volumen</label>
           <input
             id="volume-control"
@@ -51,17 +48,15 @@ const MusicPlayer = ({ audioSrc }) => {
           />
         </div>
       )}
-      
-      <div className="flex">
+        <div className="flex items-center">
         <button
           onClick={() => setShowVolume(!showVolume)}
-          className="w-10 h-10 bg-primary/80 rounded-full shadow-md flex items-center justify-center hover:bg-primary-light transition-colors duration-300 mr-2"
+          className="w-12 h-12 bg-primary/80 rounded-full shadow-md flex items-center justify-center hover:bg-primary-light transition-colors duration-300 mr-2"
           aria-label="Controlar volumen"
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
+            xmlns="http://www.w3.org/2000/svg"            width="22"
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
