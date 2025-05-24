@@ -8,37 +8,37 @@ const Inicio = () => {
   const galleryImages = [
     {
       id: 1,
-      src: "/images/gallery/img1 (1).jpg",
+      src: "/images/gallery/img1 (1).webp",
       alt: "Jessica Paola - Sesión fotográfica",
       title: "Sesión Fotográfica"
     },
     {
       id: 2,
-      src: "/images/gallery/img1 (2).jpg",
+      src: "/images/gallery/img1 (2).webp",
       alt: "Jessica Paola - Retrato elegante",
       title: "Retrato Elegante"
     },
     {
       id: 3,
-      src: "/images/gallery/img1 (3).jpg",
+      src: "/images/gallery/img1 (3).webp",
       alt: "Jessica Paola - Momentos especiales",
       title: "Momentos Especiales"
     },
     {
       id: 4,
-      src: "/images/gallery/img1 (4).jpg",
+      src: "/images/gallery/img1 (4).webp",
       alt: "Jessica Paola - Preparativos",
       title: "Preparativos"
     },
     {
       id: 5,
-      src: "/images/gallery/img1 (5).jpg",
+      src: "/images/gallery/img1 (5).webp",
       alt: "Jessica Paola - Con familia",
       title: "Con Familia"
     },
     {
       id: 6,
-      src: "/images/gallery/img1 (6).jpg",
+      src: "/images/gallery/img1 (6).webp",
       alt: "Jessica Paola - Sonrisa radiante",
       title: "Sonrisa Radiante"
     }
