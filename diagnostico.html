@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico - XV Años Jessica</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #8e44ad;
+            border-bottom: 2px solid #8e44ad;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #9b59b6;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #8e44ad;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        button {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        button:hover {
+            background-color: #8e44ad;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagnóstico - XV Años Jessica</h1>
+    <p>Esta herramienta te ayuda a verificar si el sitio web funciona correctamente.</p>
+
+    <div class="card">
+        <h2>Prueba de Audio</h2>
+        <p>Verifica si se puede reproducir el archivo de música de fondo:</p>
+        <button onclick="checkAudio('./audio/background-music.mp3')">Probar Audio</button>
+        <div id="audio-result"></div>
+    </div>
+
+    <div class="card">
+        <h2>Prueba de Imágenes</h2>
+        <p>Verifica si la imagen de fondo carga correctamente:</p>
+        <button onclick="checkImage('./images/backgrounds/bg-pattern.png')">Verificar Imagen de Fondo</button>
+        <div id="image-result"></div>
+    </div>
+
+    <script>
+        // Probar audio
+        function checkAudio(path) {
+            const result = document.getElementById('audio-result');
+            result.innerHTML = "Verificando...";
+            
+            const audio = new Audio(path);
+            
+            audio.addEventListener('loadeddata', () => {
+                result.innerHTML = `<span class="success">✅ El audio se cargó correctamente</span>`;
+                
+                // Añadir controles para reproducir
+                const player = document.createElement('div');
+                player.innerHTML = `
+                    <audio controls style="margin-top: 10px;">
+                        <source src="${path}" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                `;
+                result.appendChild(player);
+            });
+            
+            audio.addEventListener('error', () => {
+                result.innerHTML = `<span class="error">❌ Error al cargar el audio</span>
+                    <p>Posible problema: La ruta del archivo puede ser incorrecta o el archivo no existe.</p>`;
+            });
+        }
+        
+        // Probar imagen
+        function checkImage(path) {
+            const result = document.getElementById('image-result');
+            result.innerHTML = "Verificando...";
+            
+            const img = new Image();
+            img.src = path;
+            
+            img.onload = () => {
+                result.innerHTML = `<span class="success">✅ La imagen se cargó correctamente</span>`;
+                
+                // Mostrar miniatura
+                const thumbnail = document.createElement('div');
+                thumbnail.innerHTML = `<img src="${path}" style="max-width: 200px; margin-top: 10px; border: 1px solid #ddd;">`;
+                result.appendChild(thumbnail);
+            };
+            
+            img.onerror = () => {
+                result.innerHTML = `<span class="error">❌ Error al cargar la imagen</span>
+                    <p>Posible problema: La ruta de la imagen puede ser incorrecta o el archivo no existe.</p>`;
+            };
+        }
+    </script>
+</body>
+</html>

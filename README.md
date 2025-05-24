@@ -65,6 +65,8 @@ Este proyecto es un sitio web personalizado para la celebración de XV años de 
 quince-jessica/
 ├── public/                 # Archivos estáticos
 │   ├── audio/              # Archivos de música
+│   │   └── background-music.mp3  # Música de fondo
+│   ├── audio-check.html    # Herramienta para verificar audio
 │   └── images/             # Imágenes
 │       ├── backgrounds/    # Fondos para el sitio
 │       └── gallery/        # Imágenes para la galería
@@ -72,11 +74,13 @@ quince-jessica/
 │   ├── components/         # Componentes reutilizables
 │   ├── pages/              # Páginas principales
 │   ├── App.jsx             # Componente principal
-│   ├── main.jsx            # Punto de entrada
+│   ├── main.jsx           # Punto de entrada
 │   └── index.css           # Estilos globales
 ├── .gitignore              # Archivos ignorados por Git
 ├── package.json            # Dependencias y scripts
 ├── vite.config.js          # Configuración de Vite
+├── diagnostico.html        # Herramienta de diagnóstico
+├── deploy-gh-pages.ps1     # Script para desplegar en GitHub Pages
 └── README.md               # Este archivo
 ```
 
@@ -96,7 +100,63 @@ quince-jessica/
 
 Modifica los archivos en la carpeta `src/pages/` para actualizar la información específica del evento.
 
-## 📝 Licencia
+## 🔄 Recuperación del Proyecto
+
+Si encuentras problemas con el repositorio o necesitas recuperar una versión anterior:
+
+```powershell
+# En PowerShell: Recupera la rama main desde el repositorio remoto
+git fetch origin
+git reset --hard origin/main
+git clean -fd
+```
+
+Esto descargará la última versión del repositorio y eliminará cualquier archivo no rastreado por Git.
+
+## 🚢 Despliegue en GitHub Pages
+
+Para desplegar el sitio en GitHub Pages, simplemente ejecuta:
+
+```bash
+./deploy-gh-pages.ps1
+```
+
+Este script:
+1. Compila el sitio con Vite
+2. Crea una rama temporal
+3. Copia los archivos compilados
+4. Crea y actualiza la rama gh-pages
+5. Sube los cambios a GitHub
+
+### Solución de problemas
+
+Después del despliegue, puedes acceder a la herramienta de diagnóstico online visitando:
+```
+https://[tu-usuario].github.io/[tu-repo]/diagnostico.html
+```
+
+Si encuentras problemas al desplegar, verifica:
+
+#### El audio no funciona en GitHub Pages
+
+Asegúrate de que:
+1. La ruta del audio en `App.jsx` sea relativa (`./audio/background-music.mp3`)
+2. El archivo de audio exista en la carpeta `public/audio/`
+3. La configuración `base: './'` esté presente en `vite.config.js`
+4. Usa la herramienta `diagnostico.html` para verificar el audio
+
+#### Las imágenes no cargan
+
+Asegúrate de que todas las rutas de imágenes sean relativas:
+```jsx
+const bgImagePath = './images/backgrounds/bg-pattern.png';
+```
+
+#### La navegación no funciona
+
+El sitio usa `HashRouter` en lugar de `BrowserRouter` para funcionar correctamente en GitHub Pages.
+
+## �📝 Licencia
 
 Este proyecto es de uso personal y está destinado para la celebración de XV años de Jessica Paola.
 
