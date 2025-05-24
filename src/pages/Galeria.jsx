@@ -2,106 +2,20 @@ import React, { useState, useEffect } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import PhotoUploader from '../components/PhotoUploader';
 import ModularSwiperGallery from '../components/ModularSwiperGallery';
-
-// Imágenes de muestra para la galería
-const galleryImages = [
-  { 
-    id: 1, 
-    src: '/images/gallery/img1 (1).webp', 
-    title: 'Sesión Fotográfica', 
-    description: 'Hermosos momentos capturados en estudio' 
-  },
-  { 
-    id: 2, 
-    src: '/images/gallery/img1 (2).webp', 
-    title: 'Retrato Elegante', 
-    description: 'Un retrato lleno de gracia y elegancia' 
-  },
-  { 
-    id: 3, 
-    src: '/images/gallery/img1 (3).webp', 
-    title: 'Momentos Especiales', 
-    description: 'Cada momento es único e irrepetible' 
-  },
-  { 
-    id: 4, 
-    src: '/images/gallery/img1 (4).webp', 
-    title: 'Preparativos', 
-    description: 'Los detalles que hacen la diferencia' 
-  },
-  { 
-    id: 5, 
-    src: '/images/gallery/img1 (5).webp', 
-    title: 'Con Familia', 
-    description: 'Momentos compartidos con los seres queridos' 
-  },
-  { 
-    id: 6, 
-    src: '/images/gallery/img1 (6).webp', 
-    title: 'Sonrisa Radiante', 
-    description: 'La alegría de este día especial' 
-  },
-  // Imágenes adicionales para mostrar más contenido
-  { 
-    id: 7, 
-    src: '/images/gallery/img1 (1).webp', 
-    title: 'Recuerdos', 
-    description: 'Momentos que quedarán en el corazón' 
-  },
-  { 
-    id: 8, 
-    src: '/images/gallery/img1 (2).webp', 
-    title: 'Celebración', 
-    description: 'Una celebración llena de amor' 
-  },
-  { 
-    id: 9, 
-    src: '/images/gallery/img1 (3).webp', 
-    title: 'Alegría', 
-    description: 'La felicidad se refleja en cada foto' 
-  },
-  { 
-    id: 10, 
-    src: '/images/gallery/img1 (4).webp', 
-    title: 'Tradición', 
-    description: 'Honrando las tradiciones familiares' 
-  },
-  { 
-    id: 11, 
-    src: '/images/gallery/img1 (5).webp', 
-    title: 'Amistad', 
-    description: 'Rodeada del amor de mis amigas' 
-  },
-  { 
-    id: 12, 
-    src: '/images/gallery/img1 (6).webp', 
-    title: 'Quinceañera', 
-    description: 'El día más especial de mi vida' 
-  }
-];
+import useGalleryImages from '../hooks/useGalleryImages';
 
 const Galeria = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { images: galleryImages, loading } = useGalleryImages();
 
   const openLightbox = (image) => {
     setSelectedImage(image);
     document.body.style.overflow = 'hidden';
   };
-
   const closeLightbox = () => {
     setSelectedImage(null);
     document.body.style.overflow = 'auto';
   };
-
-  useEffect(() => {
-    // Simular carga de imágenes
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="min-h-screen py-12">

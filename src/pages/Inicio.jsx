@@ -2,54 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Grid, Pagination, Autoplay } from 'swiper/modules';
+import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+import useGalleryImages from '../hooks/useGalleryImages';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/grid';
+import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
 const Inicio = () => {
   const [isVisible, setIsVisible] = useState(false);
   
-  // Gallery images for collage
-  const galleryImages = [
-    {
-      id: 1,
-      src: "/images/gallery/img1 (1).webp",
-      alt: "Jessica Paola - Sesión fotográfica",
-      title: "Sesión Fotográfica"
-    },
-    {
-      id: 2,
-      src: "/images/gallery/img1 (2).webp",
-      alt: "Jessica Paola - Retrato elegante",
-      title: "Retrato Elegante"
-    },
-    {
-      id: 3,
-      src: "/images/gallery/img1 (3).webp",
-      alt: "Jessica Paola - Momentos especiales",
-      title: "Momentos Especiales"
-    },
-    {
-      id: 4,
-      src: "/images/gallery/img1 (4).webp",
-      alt: "Jessica Paola - Preparativos",
-      title: "Preparativos"
-    },
-    {
-      id: 5,
-      src: "/images/gallery/img1 (5).webp",
-      alt: "Jessica Paola - Con familia",
-      title: "Con Familia"
-    },
-    {
-      id: 6,
-      src: "/images/gallery/img1 (6).webp",
-      alt: "Jessica Paola - Sonrisa radiante",
-      title: "Sonrisa Radiante"
-    }  ];
+  // Use dynamic gallery images hook
+  const { images: allImages, loading, getRandomImages } = useGalleryImages();
+  
+  // Get 3 random images for homepage
+  const galleryImages = getRandomImages(3);
 
   useEffect(() => {
     setIsVisible(true);
@@ -108,7 +76,7 @@ const Inicio = () => {
             </div>
           </div>
         </div>
-      </div>      {/* Photo Gallery Collage Section */}
+      </div>      {/* Photo Gallery Collage Section */}      {/* Photo Gallery Preview Section */}
       <div className="gallery-section bg-gray-50/70 backdrop-blur-sm py-16">
         <div className="max-w-6xl mx-auto px-4">
           
@@ -120,74 +88,66 @@ const Inicio = () => {
             <p className="font-serif text-gray-600 text-base md:text-lg">
               Una colección de recuerdos de estos años maravillosos
             </p>
-          </div>
-
-          {/* Swiper Gallery Container */}
+          </div>          {/* Coverflow Gallery Container */}
           <div className="gallery-container">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-4">
-              <Swiper
-                slidesPerView={1}
-                grid={{
-                  rows: 3,
-                  fill: 'row',
-                }}
-                spaceBetween={16}
-                pagination={{
-                  clickable: true,
-                  dynamicBullets: true,
-                }}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                modules={[Grid, Pagination, Autoplay]}
-                breakpoints={{
-                  640: {
-                    slidesPerView: 2,
-                    grid: {
-                      rows: 2,
-                      fill: 'row',
-                    },
-                  },
-                  768: {
-                    slidesPerView: 3,
-                    grid: {
-                      rows: 2,
-                      fill: 'row',
-                    },
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                    grid: {
-                      rows: 2,
-                      fill: 'row',
-                    },
-                  },
-                }}
-                className="gallery-swiper"
-              >
-                {galleryImages.map((image) => (
-                  <SwiperSlide key={image.id}>
-                    <div className="relative group aspect-[4/3] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      {/* Image Overlay with Title */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <h4 className="text-white font-serif text-sm md:text-base font-medium">
-                            {image.title}
-                          </h4>
+            {loading ? (
+              <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+              </div>
+            ) : galleryImages.length > 0 ? (
+              <div className="bg-white rounded-2xl overflow-hidden p-6">
+                <Swiper
+                  effect={'coverflow'}
+                  grabCursor={true}
+                  centeredSlides={true}
+                  slidesPerView={'auto'}
+                  coverflowEffect={{
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: false,
+                  }}
+                  pagination={{
+                    clickable: true,
+                    dynamicBullets: true,
+                  }}
+                  autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                  }}
+                  modules={[EffectCoverflow, Pagination, Autoplay]}
+                  className="coverflow-swiper"
+                >
+                  {galleryImages.map((image) => (
+                    <SwiperSlide key={image.id}>
+                      <div className="relative group rounded-xl overflow-hidden">
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        {/* Image Overlay with Title */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h4 className="text-white font-serif text-sm md:text-base font-medium">
+                              {image.title}
+                            </h4>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-600 font-serif">
+                  Las fotos se cargarán pronto...
+                </p>
+              </div>
+            )}
           </div>
 
           {/* View More Button */}

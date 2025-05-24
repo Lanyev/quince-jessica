@@ -511,3 +511,73 @@ h1, h2, h3 {
     display: none;
   }
 }
+
+/* Coverflow Swiper Styles for Homepage */
+.coverflow-swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.coverflow-swiper .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 350px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverflow-swiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.coverflow-swiper .swiper-slide .relative {
+  width: 100%;
+  height: 100%;
+}
+
+/* Pagination for Coverflow */
+.coverflow-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 20px;
+}
+
+.coverflow-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: var(--primary-light);
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.coverflow-swiper .swiper-pagination-bullet-active {
+  background: var(--primary);
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments for Coverflow */
+@media (max-width: 768px) {
+  .coverflow-swiper .swiper-slide {
+    width: 280px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coverflow-swiper .swiper-slide {
+    width: 240px;
+    height: 180px;
+  }
+  
+  .coverflow-swiper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
