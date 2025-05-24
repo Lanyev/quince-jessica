@@ -12,7 +12,7 @@ export default {
         'primary-dark': '#600010', // Versión más oscura del color principal
         'secondary': '#FFFFFF', // Color secundario (Blanco)
       },      fontFamily: {
-        'script': ['Dancing Script', 'cursive'], // Fuente elegante para títulos principales
+        'script': ['Great Vibes', 'Allura', 'Dancing Script', 'cursive'], // Fuente elegante para títulos principales
         'serif': ['Libre Baskerville', 'Georgia', 'serif'], // Fuente serif para textos formales
         'display': ['Noto Sans Display', 'sans-serif'], // Fuente sans para la navbar y modal
       },
