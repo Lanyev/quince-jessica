@@ -218,75 +218,60 @@ h1, h2, h3 {
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
 }
 
-/* Carousel Styles */
-.carousel-container {
+/* Swiper Gallery Styles */
+.gallery-container {
   max-width: 100%;
   margin: 0 auto;
 }
 
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-color);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.gallery-swiper {
+  padding-bottom: 50px !important;
 }
 
-.carousel-btn:hover {
+.gallery-swiper .swiper-slide {
+  height: auto;
+}
+
+.gallery-swiper .swiper-pagination {
+  bottom: 10px !important;
+}
+
+.gallery-swiper .swiper-pagination-bullet {
   background: var(--primary-color);
-  color: white;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.3);
+  opacity: 0.3;
+  width: 12px;
+  height: 12px;
+  transition: all 0.3s ease;
 }
 
-.carousel-btn-prev {
-  left: 20px;
-}
-
-.carousel-btn-next {
-  right: 20px;
-}
-
-@media (max-width: 640px) {
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .carousel-btn-prev {
-    left: 10px;
-  }
-  
-  .carousel-btn-next {
-    right: 10px;
-  }
-}
-
-/* Carousel Animation */
-.carousel-slide {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.5s ease-in-out;
-}
-
-.carousel-slide.active {
+.gallery-swiper .swiper-pagination-bullet-active {
   opacity: 1;
-  transform: translateX(0);
+  transform: scale(1.2);
+  background: var(--primary-color);
 }
 
-.carousel-slide.prev {
-  transform: translateX(-100%);
+/* Custom styling for dynamic pagination bullets */
+.gallery-swiper .swiper-pagination-bullet-active-main {
+  background: var(--primary-color);
+  transform: scale(1.4);
+}
+
+.gallery-swiper .swiper-pagination-bullet-active-prev,
+.gallery-swiper .swiper-pagination-bullet-active-next {
+  background: var(--primary-light);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments for gallery */
+@media (max-width: 640px) {
+  .gallery-swiper {
+    padding-bottom: 40px !important;
+  }
+  
+  .gallery-swiper .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 /* Refined animations with stagger effect */

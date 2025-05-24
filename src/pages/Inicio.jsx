@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Grid, Pagination, Autoplay } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/grid';
+import 'swiper/css/pagination';
 
 const Inicio = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  // Gallery images for carousel
+  
+  // Gallery images for collage
   const galleryImages = [
     {
       id: 1,
@@ -41,31 +49,11 @@ const Inicio = () => {
       src: "/images/gallery/img1 (6).webp",
       alt: "Jessica Paola - Sonrisa radiante",
       title: "Sonrisa Radiante"
-    }
-  ];
+    }  ];
 
   useEffect(() => {
     setIsVisible(true);
-    
-    // Auto-advance carousel
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [galleryImages.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };  return (
+  }, []);return (
     <div className="min-h-screen">      {/* Invitation Header Section */}
       <div className={`invitation-header px-4 py-12 md:py-20 transition-all duration-1000 bg-white/60 backdrop-blur-sm ${isVisible ? 'opacity-80 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-4xl mx-auto text-center">
@@ -120,7 +108,7 @@ const Inicio = () => {
             </div>
           </div>
         </div>
-      </div>      {/* Photo Carousel Section */}
+      </div>      {/* Photo Gallery Collage Section */}
       <div className="gallery-section bg-gray-50/70 backdrop-blur-sm py-16">
         <div className="max-w-6xl mx-auto px-4">
           
@@ -134,100 +122,71 @@ const Inicio = () => {
             </p>
           </div>
 
-          {/* Carousel Container */}
-          <div className="carousel-container">
-            <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden">
-              
-              {/* Main Carousel */}
-              <div className="relative aspect-[16/10] md:aspect-[16/9] overflow-hidden">
-                <div 
-                  className="flex transition-transform duration-500 ease-in-out h-full"
-                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                >
-                  {galleryImages.map((image, index) => (
-                    <div key={image.id} className="w-full flex-shrink-0 relative">
+          {/* Swiper Gallery Container */}
+          <div className="gallery-container">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-4">
+              <Swiper
+                slidesPerView={1}
+                grid={{
+                  rows: 3,
+                  fill: 'row',
+                }}
+                spaceBetween={16}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
+                modules={[Grid, Pagination, Autoplay]}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                    grid: {
+                      rows: 2,
+                      fill: 'row',
+                    },
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    grid: {
+                      rows: 2,
+                      fill: 'row',
+                    },
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    grid: {
+                      rows: 2,
+                      fill: 'row',
+                    },
+                  },
+                }}
+                className="gallery-swiper"
+              >
+                {galleryImages.map((image) => (
+                  <SwiperSlide key={image.id}>
+                    <div className="relative group aspect-[4/3] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                       <img
                         src={image.src}
                         alt={image.alt}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                       {/* Image Overlay with Title */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
-                        <div className="absolute bottom-6 left-6">
-                          <h4 className="text-white font-serif text-lg md:text-xl font-medium">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h4 className="text-white font-serif text-sm md:text-base font-medium">
                             {image.title}
                           </h4>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-
-                {/* Navigation Arrows */}
-                <button
-                  onClick={prevSlide}
-                  className="carousel-btn carousel-btn-prev"
-                  aria-label="Imagen anterior"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                
-                <button
-                  onClick={nextSlide}
-                  className="carousel-btn carousel-btn-next"
-                  aria-label="Imagen siguiente"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-
-                {/* Image Counter */}
-                <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-serif">
-                  {currentSlide + 1} / {galleryImages.length}
-                </div>
-              </div>
-
-              {/* Thumbnail Navigation */}
-              <div className="p-6 bg-white">
-                <div className="flex justify-center space-x-3 overflow-x-auto pb-2">
-                  {galleryImages.map((image, index) => (
-                    <button
-                      key={image.id}
-                      onClick={() => goToSlide(index)}
-                      className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden transition-all duration-300 ${
-                        index === currentSlide
-                          ? 'ring-3 ring-primary shadow-lg transform scale-105'
-                          : 'opacity-70 hover:opacity-100 hover:ring-2 hover:ring-primary/50'
-                      }`}
-                    >
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
-
-                {/* Dot Indicators */}
-                <div className="flex justify-center mt-4 space-x-2">
-                  {galleryImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        index === currentSlide
-                          ? 'bg-primary w-8'
-                          : 'bg-gray-300 hover:bg-primary/50'
-                      }`}
-                      aria-label={`Ir a imagen ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
 
@@ -244,7 +203,7 @@ const Inicio = () => {
             </Link>
           </div>
         </div>
-      </div>      {/* Footer Message */}
+      </div>{/* Footer Message */}
       <div className="footer-section bg-white/60 backdrop-blur-sm py-16">
         <div className="max-w-3xl mx-auto text-center px-4">
           <div className="border border-primary/20 rounded-lg p-8 md:p-12">
