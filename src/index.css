@@ -337,3 +337,177 @@ h1, h2, h3 {
     line-height: 0.9;
   }
 }
+
+/* Main Gallery Swiper Styles */
+.main-gallery-swiper {
+  padding-bottom: 60px !important;
+}
+
+.main-gallery-swiper .swiper-slide {
+  height: auto;
+}
+
+.main-gallery-swiper .swiper-pagination {
+  bottom: 15px !important;
+}
+
+.main-gallery-swiper .swiper-pagination-bullet {
+  background: var(--primary-color);
+  opacity: 0.3;
+  width: 12px;
+  height: 12px;
+  transition: all 0.3s ease;
+}
+
+.main-gallery-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.3);
+  background: var(--primary-color);
+}
+
+.main-gallery-swiper .swiper-pagination-bullet-active-main {
+  background: var(--primary-color);
+  transform: scale(1.5);
+}
+
+.main-gallery-swiper .swiper-pagination-bullet-active-prev,
+.main-gallery-swiper .swiper-pagination-bullet-active-next {
+  background: var(--primary-light);
+  transform: scale(1.2);
+}
+
+.main-gallery-swiper .swiper-button-next,
+.main-gallery-swiper .swiper-button-prev {
+  color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.main-gallery-swiper .swiper-button-next:hover,
+.main-gallery-swiper .swiper-button-prev:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.3);
+}
+
+.main-gallery-swiper .swiper-button-next::after,
+.main-gallery-swiper .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Responsive adjustments for main gallery */
+@media (max-width: 768px) {
+  .main-gallery-swiper {
+    padding-bottom: 50px !important;
+  }
+  
+  .main-gallery-swiper .swiper-button-next,
+  .main-gallery-swiper .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+  }
+  
+  .main-gallery-swiper .swiper-button-next::after,
+  .main-gallery-swiper .swiper-button-prev::after {
+    font-size: 14px;
+  }
+  
+  .main-gallery-swiper .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-gallery-swiper .swiper-button-next,
+  .main-gallery-swiper .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* Modular Gallery Swiper Styles */
+.modular-gallery-swiper {
+  padding-bottom: 60px !important;
+}
+
+.modular-gallery-swiper .swiper-slide {
+  height: auto;
+}
+
+.modular-gallery-swiper .swiper-pagination {
+  bottom: 15px !important;
+}
+
+.modular-gallery-swiper .swiper-pagination-bullet {
+  background: var(--primary-color);
+  opacity: 0.3;
+  width: 12px;
+  height: 12px;
+  transition: all 0.3s ease;
+}
+
+.modular-gallery-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.3);
+  background: var(--primary-color);
+}
+
+.modular-gallery-swiper .swiper-button-next,
+.modular-gallery-swiper .swiper-button-prev {
+  color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.modular-gallery-swiper .swiper-button-next:hover,
+.modular-gallery-swiper .swiper-button-prev:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.3);
+}
+
+.modular-gallery-swiper .swiper-button-next::after,
+.modular-gallery-swiper .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Responsive adjustments for modular gallery */
+@media (max-width: 768px) {
+  .modular-gallery-swiper {
+    padding-bottom: 50px !important;
+  }
+  
+  .modular-gallery-swiper .swiper-button-next,
+  .modular-gallery-swiper .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+  }
+  
+  .modular-gallery-swiper .swiper-button-next::after,
+  .modular-gallery-swiper .swiper-button-prev::after {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modular-gallery-swiper .swiper-button-next,
+  .modular-gallery-swiper .swiper-button-prev {
+    display: none;
+  }
+}

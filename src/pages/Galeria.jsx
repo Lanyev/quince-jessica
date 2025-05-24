@@ -1,44 +1,82 @@
 import React, { useState, useEffect } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import PhotoUploader from '../components/PhotoUploader';
+import ModularSwiperGallery from '../components/ModularSwiperGallery';
 
 // Imágenes de muestra para la galería
 const galleryImages = [
   { 
     id: 1, 
-    src: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=1000', 
-    title: 'Sesión Pre-XV', 
-    description: 'Fotos de estudio para invitación' 
+    src: '/images/gallery/img1 (1).webp', 
+    title: 'Sesión Fotográfica', 
+    description: 'Hermosos momentos capturados en estudio' 
   },
   { 
     id: 2, 
-    src: 'https://images.unsplash.com/photo-1518049362265-d5b2a6e911b3?q=80&w=1000', 
-    title: 'Con mis amigas', 
-    description: 'Preparativos para la gran celebración' 
+    src: '/images/gallery/img1 (2).webp', 
+    title: 'Retrato Elegante', 
+    description: 'Un retrato lleno de gracia y elegancia' 
   },
   { 
     id: 3, 
-    src: 'https://images.unsplash.com/photo-1511285560929-80b456f0a429?q=80&w=1000', 
-    title: 'Vestido de XV', 
-    description: 'Prueba de vestido con mi familia' 
+    src: '/images/gallery/img1 (3).webp', 
+    title: 'Momentos Especiales', 
+    description: 'Cada momento es único e irrepetible' 
   },
   { 
     id: 4, 
-    src: 'https://images.unsplash.com/photo-1604093882750-3ed498f3178b?q=80&w=1000', 
-    title: 'Zapatillas', 
-    description: 'El complemento perfecto para el gran día' 
+    src: '/images/gallery/img1 (4).webp', 
+    title: 'Preparativos', 
+    description: 'Los detalles que hacen la diferencia' 
   },
   { 
     id: 5, 
-    src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000', 
-    title: 'Locación', 
-    description: 'El hermoso lugar donde celebraremos' 
+    src: '/images/gallery/img1 (5).webp', 
+    title: 'Con Familia', 
+    description: 'Momentos compartidos con los seres queridos' 
   },
   { 
     id: 6, 
-    src: 'https://images.unsplash.com/photo-1470816692786-37612294f90f?q=80&w=1000', 
-    title: 'Detalles', 
-    description: 'Pequeños detalles que hacen la diferencia' 
+    src: '/images/gallery/img1 (6).webp', 
+    title: 'Sonrisa Radiante', 
+    description: 'La alegría de este día especial' 
+  },
+  // Imágenes adicionales para mostrar más contenido
+  { 
+    id: 7, 
+    src: '/images/gallery/img1 (1).webp', 
+    title: 'Recuerdos', 
+    description: 'Momentos que quedarán en el corazón' 
+  },
+  { 
+    id: 8, 
+    src: '/images/gallery/img1 (2).webp', 
+    title: 'Celebración', 
+    description: 'Una celebración llena de amor' 
+  },
+  { 
+    id: 9, 
+    src: '/images/gallery/img1 (3).webp', 
+    title: 'Alegría', 
+    description: 'La felicidad se refleja en cada foto' 
+  },
+  { 
+    id: 10, 
+    src: '/images/gallery/img1 (4).webp', 
+    title: 'Tradición', 
+    description: 'Honrando las tradiciones familiares' 
+  },
+  { 
+    id: 11, 
+    src: '/images/gallery/img1 (5).webp', 
+    title: 'Amistad', 
+    description: 'Rodeada del amor de mis amigas' 
+  },
+  { 
+    id: 12, 
+    src: '/images/gallery/img1 (6).webp', 
+    title: 'Quinceañera', 
+    description: 'El día más especial de mi vida' 
   }
 ];
 
@@ -76,66 +114,27 @@ const Galeria = () => {
           </div>
         </div>
 
-        <PhotoUploader />
-
-        {loading ? (
+        <PhotoUploader />        {loading ? (
           <div className="flex justify-center items-center h-64">
             <LoadingSpinner />
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Si no hay imágenes en galleryImages, mostrar placeholders */}
-            {galleryImages.length > 0 ? (
-              galleryImages.map((image) => (
-                <div 
-                  key={image.id} 
-                  className="overflow-hidden rounded-xl shadow-xl bg-white border border-primary/10 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                  onClick={() => openLightbox(image)}
-                >
-                  <div className="h-64 bg-primary/5 overflow-hidden">
-                    <img 
-                      src={image.src} 
-                      alt={image.title} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-script font-semibold text-primary">{image.title}</h3>
-                    <p className="text-gray-600 mt-2 font-serif">{image.description}</p>
-                  </div>
-                </div>
-              ))
-            ) : (
-              // Placeholders cuando no hay imágenes aún
-              [1, 2, 3, 4, 5, 6].map((item) => (
-                <div key={item} className="overflow-hidden rounded-xl shadow-xl bg-white border border-primary/10 transition-transform duration-300 hover:scale-105">
-                  <div className="h-64 bg-primary/5 flex items-center justify-center">
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      width="64" 
-                      height="64" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="1" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      className="text-primary/60"
-                    >
-                      <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                      <circle cx="9" cy="9" r="2" />
-                      <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-                    </svg>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-script font-semibold text-primary">Foto {item}</h3>
-                    <p className="text-gray-600 mt-2 font-serif">Próximamente</p>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        )}        <div className="mt-10 text-center">
+          <ModularSwiperGallery 
+            images={galleryImages}
+            onImageClick={openLightbox}
+            showNavigation={true}
+            showPagination={true}
+            autoplay={true}
+            className="main-gallery-swiper"
+            spaceBetween={20}
+            rows={2}
+            slidesPerView={{
+              mobile: 1,
+              tablet: 2,
+              desktop: 3
+            }}
+          />
+        )}<div className="mt-10 text-center">
           <p className="font-serif text-primary-light">
             Las fotos del evento se compartirán aquí después de la celebración.
           </p>
