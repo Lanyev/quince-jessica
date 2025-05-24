@@ -5,7 +5,7 @@ import SaveTheDate from '../components/SaveTheDate';
 const Inicio = () => {
   // Función para calcular la cuenta regresiva
   const calculateTimeLeft = () => {
-    const eventDate = new Date('June 25, 2025 18:00:00');
+    const eventDate = new Date('July 26, 2025 18:00:00');
     const difference = eventDate - new Date();
     
     let timeLeft = {};
