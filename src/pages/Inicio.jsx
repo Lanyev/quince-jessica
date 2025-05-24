@@ -4,42 +4,41 @@ import { Link } from 'react-router-dom';
 const Inicio = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-
   // Gallery images for carousel
   const galleryImages = [
     {
       id: 1,
-      src: "public/images/gallery/img1 (1).jpg",
+      src: "/images/gallery/img1 (1).jpg",
       alt: "Jessica Paola - Sesión fotográfica",
       title: "Sesión Fotográfica"
     },
     {
       id: 2,
-      src: "public/images/gallery/img1 (2).jpg",
+      src: "/images/gallery/img1 (2).jpg",
       alt: "Jessica Paola - Retrato elegante",
       title: "Retrato Elegante"
     },
     {
       id: 3,
-      src: "public/images/gallery/img1 (3).jpg",
+      src: "/images/gallery/img1 (3).jpg",
       alt: "Jessica Paola - Momentos especiales",
       title: "Momentos Especiales"
     },
     {
       id: 4,
-      src: "public/images/gallery/img1 (4).jpg",
+      src: "/images/gallery/img1 (4).jpg",
       alt: "Jessica Paola - Preparativos",
       title: "Preparativos"
     },
     {
       id: 5,
-      src: "public/images/gallery/img1 (5).jpg",
+      src: "/images/gallery/img1 (5).jpg",
       alt: "Jessica Paola - Con familia",
       title: "Con Familia"
     },
     {
       id: 6,
-      src: "public/images/gallery/img1 (6).jpg",
+      src: "/images/gallery/img1 (6).jpg",
       alt: "Jessica Paola - Sonrisa radiante",
       title: "Sonrisa Radiante"
     }
