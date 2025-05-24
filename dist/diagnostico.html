@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de Página Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #e91e63;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px 10px 0;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .warning {
+            color: orange;
+            font-weight: bold;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .item {
+            flex: 1;
+            min-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagnóstico de Página Web - XV Años</h1>
+    <p>Esta página te ayuda a diagnosticar problemas comunes en el sitio web de XV Años desplegado en GitHub Pages.</p>
+    
+    <h2>1. Información del Entorno</h2>
+    <div class="result">
+        <pre id="environment-info"></pre>
+    </div>
+    
+    <h2>2. Pruebas de Recursos</h2>
+    <div class="flex">
+        <div class="item">
+            <h3>Archivos Críticos</h3>
+            <button onclick="checkFile('./index.html')">Verificar index.html</button>
+            <button onclick="checkFile('./audio/background-music.mp3')">Verificar audio</button>
+            <div id="file-results" class="result"></div>
+        </div>
+        <div class="item">
+            <h3>Reproducción de Audio</h3>
+            <button onclick="testAudioRelative()">Probar Audio Relativo</button>
+            <button onclick="testAudioAbsolute()">Probar Audio Absoluto</button>
+            <div id="audio-results" class="result"></div>
+        </div>
+    </div>
+    
+    <h2>3. Soluciones Comunes</h2>
+    <div class="result">
+        <h3>Si la música no se reproduce:</h3>
+        <ol>
+            <li>Verifica que el archivo de audio exista en la carpeta <code>audio</code></li>
+            <li>Asegúrate que la ruta <code>./audio/background-music.mp3</code> sea correcta</li>
+            <li>Comprueba que <code>vite.config.js</code> tenga configurado <code>base: './'</code></li>
+            <li>En consola del navegador, busca errores relacionados a la carga del audio</li>
+        </ol>
+        
+        <h3>Si la página está en blanco o no carga:</h3>
+        <ol>
+            <li>Asegúrate que los archivos compilados se copiaron correctamente</li>
+            <li>Verifica que <code>index.html</code> y <code>assets</code> existan en la raíz del sitio</li>
+            <li>Revisa si hay errores de JavaScript en la consola del navegador</li>
+            <li>Comprueba que estés usando <code>HashRouter</code> en lugar de <code>BrowserRouter</code></li>
+        </ol>
+    </div>
+    
+    <h2>4. Informe de Diagnóstico</h2>
+    <button onclick="generateReport()">Generar Informe Completo</button>
+    <div id="full-report" class="result">
+        <p>Presiona el botón para generar un informe completo.</p>
+    </div>
+    
+    <script>
+        // Información del entorno
+        function loadEnvironmentInfo() {
+            const info = {
+                url: window.location.href,
+                pathname: window.location.pathname,
+                hostname: window.location.hostname,
+                protocol: window.location.protocol,
+                userAgent: navigator.userAgent,
+                time: new Date().toLocaleString()
+            };
+            
+            document.getElementById('environment-info').textContent = JSON.stringify(info, null, 2);
+        }
+        
+        // Verificar si un archivo existe
+        async function checkFile(url) {
+            const resultsElement = document.getElementById('file-results');
+            resultsElement.innerHTML = `<p>Verificando ${url}...</p>`;
+            
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                if (response.ok) {
+                    resultsElement.innerHTML += `<p class="success">✅ El archivo ${url} existe.</p>`;
+                } else {
+                    resultsElement.innerHTML += `<p class="error">❌ El archivo ${url} no existe. Código: ${response.status}</p>`;
+                }
+            } catch (error) {
+                resultsElement.innerHTML += `<p class="error">❌ Error al verificar ${url}: ${error.message}</p>`;
+            }
+        }
+        
+        // Probar audio
+        function testAudio(url, isRelative) {
+            const resultsElement = document.getElementById('audio-results');
+            const pathType = isRelative ? "relativa" : "absoluta";
+            resultsElement.innerHTML += `<p>Probando ruta ${pathType}: ${url}</p>`;
+            
+            const audio = new Audio(url);
+            
+            audio.addEventListener('loadeddata', () => {
+                resultsElement.innerHTML += `<p class="success">✅ Audio cargado (${pathType}): ${url}</p>`;
+                audio.play().then(() => {
+                    resultsElement.innerHTML += `<p class="success">✅ Audio reproducido correctamente.</p>`;
+                    setTimeout(() => audio.pause(), 2000); // Reproducir sólo 2 segundos
+                }).catch(e => {
+                    resultsElement.innerHTML += `<p class="warning">⚠️ No se pudo reproducir: ${e.message}</p>`;
+                });
+            });
+            
+            audio.addEventListener('error', (e) => {
+                resultsElement.innerHTML += `<p class="error">❌ Error al cargar audio (${pathType}): ${e.target.error.message || 'Error desconocido'}</p>`;
+            });
+        }
+        
+        function testAudioRelative() {
+            document.getElementById('audio-results').innerHTML = '';
+            testAudio('./audio/background-music.mp3', true);
+        }
+        
+        function testAudioAbsolute() {
+            document.getElementById('audio-results').innerHTML = '';
+            testAudio('/audio/background-music.mp3', false);
+        }
+        
+        // Generar informe completo
+        async function generateReport() {
+            const reportElement = document.getElementById('full-report');
+            reportElement.innerHTML = '<p>Generando informe...</p>';
+            
+            try {
+                // Verificar archivos críticos
+                let report = '<h3>Verificación de Archivos</h3><ul>';
+                const criticalFiles = ['./index.html', './audio/background-music.mp3', './assets/index-BlmYZYVC.js'];
+                
+                for (const file of criticalFiles) {
+                    try {
+                        const response = await fetch(file, { method: 'HEAD' });
+                        if (response.ok) {
+                            report += `<li class="success">✅ ${file} - Encontrado</li>`;
+                        } else {
+                            report += `<li class="error">❌ ${file} - No encontrado (${response.status})</li>`;
+                        }
+                    } catch (error) {
+                        report += `<li class="error">❌ ${file} - Error: ${error.message}</li>`;
+                    }
+                }
+                report += '</ul>';
+                
+                // Prueba de audio
+                report += '<h3>Prueba de Audio</h3>';
+                const audio = new Audio('./audio/background-music.mp3');
+                
+                try {
+                    await new Promise((resolve, reject) => {
+                        audio.addEventListener('loadeddata', () => resolve());
+                        audio.addEventListener('error', (e) => reject(new Error(`Error de carga: ${e.target.error.message || 'Desconocido'}`)));
+                        
+                        // Si después de 3 segundos no carga, consideramos que hay un problema
+                        setTimeout(() => reject(new Error('Tiempo de carga excedido')), 3000);
+                    });
+                    report += '<p class="success">✅ El audio carga correctamente</p>';
+                } catch (error) {
+                    report += `<p class="error">❌ Problema con el audio: ${error.message}</p>`;
+                }
+                
+                // Verificar navegador
+                report += '<h3>Información del Navegador</h3>';
+                report += `<p>User Agent: ${navigator.userAgent}</p>`;
+                report += `<p>URL actual: ${window.location.href}</p>`;
+                
+                reportElement.innerHTML = report;
+            } catch (error) {
+                reportElement.innerHTML = `<p class="error">Error al generar informe: ${error.message}</p>`;
+            }
+        }
+        
+        // Inicializar
+        window.addEventListener('DOMContentLoaded', () => {
+            loadEnvironmentInfo();
+        });
+    </script>
+</body>
+</html>
