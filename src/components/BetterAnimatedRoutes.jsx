@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import ScrollToTopOnRoute from './ScrollToTopOnRoute';
 
 const BetterAnimatedRoutes = ({ children }) => {
   const location = useLocation();
@@ -12,27 +13,32 @@ const BetterAnimatedRoutes = ({ children }) => {
     if (location !== currentLocation) {
       setIsChangingPage(true);
       
-      // Después de un breve retraso (durante el cual el wallpaper es visible),
+      // Scroll al top inmediatamente al cambiar de página
+      window.scrollTo(0, 0);
+        // Después de un breve retraso (durante el cual el wallpaper es visible),
       // actualiza la ubicación actual para mostrar la nueva página
       const timer = setTimeout(() => {
         setCurrentLocation(location);
         setIsChangingPage(false);
-      }, 500); // Muestra el wallpaper por 500ms
+        // Asegurar scroll al top después de la transición
+        window.scrollTo(0, 0);
+      }, 200); // Reducido de 500ms a 200ms para transición más rápida
       
       return () => clearTimeout(timer);
     }
   }, [location, currentLocation]);
-  
-  return (
+    return (
     <div className="relative w-full min-h-screen">
+      {/* Componente para manejar scroll al top en cambios de ruta */}
+      <ScrollToTopOnRoute />
+      
       <AnimatePresence mode="wait" initial={false}>
         {!isChangingPage && (
           <motion.div
-            key={currentLocation.pathname}
-            initial={{ opacity: 0 }}
+            key={currentLocation.pathname}            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
             className="w-full"
           >
             <Routes location={currentLocation}>

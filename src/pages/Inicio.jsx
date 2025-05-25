@@ -15,6 +15,7 @@ import 'swiper/css/pagination';
 
 const Inicio = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   
   // Use dynamic gallery images hook
   const { images: allImages, loading, getRandomImages } = useGalleryImages();
@@ -23,10 +24,37 @@ const Inicio = () => {
   const galleryImages = getRandomImages(3);
 
   useEffect(() => {
-    setIsVisible(true);
-  }, []);  return (
+    // Precargar imágenes críticas
+    const preloadImages = async () => {
+      const imagesToLoad = [
+        './images/backgrounds/crown1.png',
+        './images/jessica-main.webp'
+      ];
+      
+      const imagePromises = imagesToLoad.map((src) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve; // Continuar incluso si hay error
+          img.src = src;
+        });
+      });
+      
+      await Promise.all(imagePromises);
+      setImagesLoaded(true);
+    };
+    
+    preloadImages();
+    
+    // Mostrar contenido después de precargar o con timeout
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    
+    return () => clearTimeout(timer);
+  }, []);return (
     <div className="min-h-screen">      {/* Crown Decorative Header */}
-      <div className={`crown-header py-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+      <div className={`crown-header py-8 transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
         <div className="flex justify-center">
           <img 
             src="./images/backgrounds/crown1.png" 
@@ -38,45 +66,42 @@ const Inicio = () => {
             }}
           />
         </div>
-      </div>
-
-      {/* Invitation Header Section */}
-      <div className={`invitation-header px-4 py-8 md:py-16 transition-all duration-1000 bg-white/60 backdrop-blur-sm ${isVisible ? 'opacity-80 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="max-w-4xl mx-auto text-center">
-            {/* Parents Names */}
-          <div className="mb-8 animate-fade-in">
+      </div>      {/* Invitation Header Section */}
+      <div className={`invitation-header px-4 py-8 md:py-16 transition-all duration-500 ease-out bg-white/40 backdrop-blur-sm ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+        <div className="max-w-4xl mx-auto text-center">{/* Parents Names */}
+          <div className="mb-8">
             <h2 className="font-script text-4xl md:text-5xl lg:text-6xl text-primary mb-4 font-medium">
               Sarai <span className="text-primary-light mx-2">y</span> Omar
             </h2>
           </div>
 
           {/* Invitation Text */}
-          <div className="mb-12 animate-fade-in delay-200">
+          <div className="mb-12">
             <p className="font-serif text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
               Tienen el honor de invitar a usted y a su apreciable familia<br />
               a la celebración de los XV años de su hija:
             </p>
           </div>          {/* Jessica Paola Name - Main Feature */}
-          <div className="mb-16 animate-fade-in delay-300">
-            <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none mb-8 animate-pulse-slow">
+          <div className="mb-16">
+            <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none mb-8">
               Jessica Paola
-            </h1>
-              {/* Jessica's Photo */}
+            </h1>            {/* Jessica's Photo - Clean Rectangle with Extended Light Fade */}
             <div className="flex justify-center mb-8">
-              <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white">
-                  <img 
+              <div className="relative group">
+                {/* Photo container - Simple rectangle with sharp corners */}
+                <div className="w-80 h-[520px] md:w-96 md:h-[620px] lg:w-[450px] lg:h-[720px] xl:w-[500px] xl:h-[800px] overflow-hidden shadow-xl relative group-hover:scale-[1.02] transition-transform duration-700">                  <img 
                     src="./images/jessica-main.webp" 
                     alt="Jessica Paola" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     onError={(e) => {
                       // Imagen temporal de placeholder si no existe la imagen principal
-                      e.target.src = "https://via.placeholder.com/200x200/800020/FFFFFF?text=Jessica+Paola";
+                      e.target.src = "https://via.placeholder.com/400x650/800020/FFFFFF?text=Jessica+Paola";
                     }}
                   />
+                  
+                  {/* Elegant overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-primary-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
-                {/* Decorative ring around photo */}
-                <div className="absolute inset-0 rounded-full border-2 border-primary/20 animate-pulse"></div>
               </div>
             </div>
             
@@ -104,7 +129,7 @@ const Inicio = () => {
           </div>
         </div>
       </div>{/* Photo Gallery Collage Section */}      {/* Photo Gallery Preview Section */}
-      <div className="gallery-section bg-gray-50/70 backdrop-blur-sm py-16 relative">
+      <div className="gallery-section bg-white/30 backdrop-blur-sm py-16 relative">
         <div className="max-w-6xl mx-auto px-4">
           
           {/* Gallery Title */}
@@ -121,7 +146,7 @@ const Inicio = () => {
               <div className="flex justify-center items-center h-64">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
               </div>            ) : galleryImages.length > 0 ? (
-              <div className="bg-white/80 rounded-2xl overflow-hidden p-6">
+              <div className="bg-white/35 backdrop-blur-sm rounded-2xl overflow-hidden p-6">
                 <Swiper
                   effect={'coverflow'}
                   grabCursor={true}

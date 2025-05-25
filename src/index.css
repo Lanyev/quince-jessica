@@ -9,9 +9,14 @@
   --font-display: 'Noto Sans Display', sans-serif;
 }
 
+html {
+  scroll-behavior: auto; /* Desactivar scroll suave para cambios de página */
+}
+
 body {
   font-family: 'Libre Baskerville', Georgia, serif;
   background-color: var(--secondary-color);
+  overflow-x: hidden; /* Prevenir scroll horizontal */
 }
 
 h1, h2, h3 {
