@@ -67,7 +67,7 @@ const Inicio = () => {
           />
         </div>
       </div>      {/* Invitation Header Section */}
-      <div className={`invitation-header px-4 py-8 md:py-16 transition-all duration-500 ease-out bg-white/40 backdrop-blur-sm ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+      <div className={`invitation-header px-4 py-8 md:py-16 transition-all duration-500 ease-out bg-white/40 backdrop-blur-sm ${isVisible ? 'opacity-85 translate-y-0' : 'opacity-0 translate-y-5'}`}>
         <div className="max-w-4xl mx-auto text-center">{/* Parents Names */}
           <div className="mb-8">
             <h2 className="font-script text-4xl md:text-5xl lg:text-6xl text-primary mb-4 font-medium">
@@ -81,11 +81,18 @@ const Inicio = () => {
               Tienen el honor de invitar a usted y a su apreciable familia<br />
               a la celebración de los XV años de su hija:
             </p>
-          </div>          {/* Jessica Paola Name - Main Feature */}
+          </div>            {/* Jessica Paola Name - Main Feature */}
           <div className="mb-16">
-            <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none mb-8">
+            <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none mb-4">
               Jessica Paola
-            </h1>            {/* Jessica's Photo - Clean Rectangle with Extended Light Fade */}
+            </h1>
+            
+            {/* Theme - Corona */}
+            <div className="mb-8">
+              <p className="font-script text-2xl md:text-3xl text-primary-light">
+                Tema: Corona 👑
+              </p>
+            </div>{/* Jessica's Photo - Clean Rectangle with Extended Light Fade */}
             <div className="flex justify-center mb-8">
               <div className="relative group">
                 {/* Photo container - Simple rectangle with sharp corners */}
@@ -104,22 +111,76 @@ const Inicio = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Decorative Line */}
-            <div className="flex justify-center mb-8">
+              {/* Decorative Line with Roses */}
+            <div className="flex justify-center items-center mb-8">
+              <span className="text-primary text-2xl mr-3">🌹</span>
               <div className="w-32 md:w-48 h-0.5 bg-primary"></div>
-            </div>
-
-            {/* Date and Time Info */}
-            <div className="space-y-4 font-serif text-gray-700">
+              <span className="text-primary text-2xl ml-3">🌹</span>
+            </div>{/* Date and Time Info */}
+            <div className="space-y-6 font-serif text-gray-700">
               <p className="text-lg md:text-xl">
                 <span className="text-primary font-medium">26 de Julio, 2025</span>
               </p>
-              <p className="text-base md:text-lg">
-                Ceremonia religiosa: <span className="text-primary">6:00 PM</span>
-              </p>              <p className="text-base md:text-lg">
-                Recepción: <span className="text-primary">8:00 PM</span>
-              </p>
+              
+              {/* Ceremony Info */}
+              <div className="space-y-2">
+                <p className="text-base md:text-lg font-medium text-primary">
+                  Ceremonia Religiosa
+                </p>
+                <p className="text-sm md:text-base">
+                  <span className="text-primary">6:00 PM</span>
+                </p>
+                <p className="text-sm md:text-base">
+                  C. Tamaulipas #7305<br />
+                  Fracc. Ampliación Aeropuerto
+                </p>
+              </div>
+
+              {/* Reception Info */}
+              <div className="space-y-2">
+                <p className="text-base md:text-lg font-medium text-primary">
+                  Recepción
+                </p>
+                <p className="text-sm md:text-base">
+                  <span className="text-primary">8:30 PM</span>
+                </p>
+                <p className="text-sm md:text-base">
+                  C. Ramón Rayón #1658
+                </p>
+              </div>
+
+              {/* Dress Code */}
+              <div className="space-y-2">
+                <p className="text-base md:text-lg font-medium text-primary">
+                  Código de Vestimenta
+                </p>
+                <p className="text-sm md:text-base">
+                  Semiformal
+                </p>
+              </div>
+
+              {/* RSVP */}
+              <div className="space-y-2">
+                <p className="text-base md:text-lg font-medium text-primary">
+                  Confirma tu Asistencia
+                </p>
+                <p className="text-sm md:text-base">
+                  Antes del <span className="text-primary font-medium">15 de Julio, 2025</span>
+                </p>
+                <p className="text-sm md:text-base">
+                  Por WhatsApp
+                </p>
+              </div>
+
+              {/* Gift Info */}
+              <div className="space-y-2">
+                <p className="text-base md:text-lg font-medium text-primary">
+                  Mesa de Regalos
+                </p>
+                <p className="text-sm md:text-base">
+                  Buzón de dinero o lluvia de sobres 💝
+                </p>
+              </div>
             </div>
             
             {/* Decorative Line */}
@@ -209,10 +270,7 @@ const Inicio = () => {
               <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>            </Link>
-          </div>
-        </div>
-          {/* Bottom fade gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50/90 via-gray-50/40 to-transparent pointer-events-none"></div>
+          </div>        </div>
       </div>
       
       {/* Additional spacing for navbar clearance */}

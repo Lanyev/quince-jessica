@@ -27,20 +27,18 @@ function App() {
     
     // Comprobamos si la imagen existe
     const img = new Image();
-    img.src = bgImagePath;
-      img.onload = () => {
+    img.src = bgImagePath;    img.onload = () => {
       // Si la imagen carga correctamente, la usamos como fondo
       setBgStyle({
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(${bgImagePath})`,
+        backgroundImage: `url(${bgImagePath})`,
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed'
       });
-    };
-      img.onerror = () => {
+    };    img.onerror = () => {
       // Si hay error, usamos un fondo con patrón sutil
       setBgStyle({
         backgroundColor: 'var(--secondary-color)',
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(var(--primary-color) 0.5px, var(--secondary-color) 0.5px)`,
+        backgroundImage: `radial-gradient(var(--primary-color) 0.5px, var(--secondary-color) 0.5px)`,
         backgroundSize: '20px 20px'
       });
     };
