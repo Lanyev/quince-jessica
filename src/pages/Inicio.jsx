@@ -16,12 +16,44 @@ import 'swiper/css/pagination';
 const Inicio = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
   
   // Use dynamic gallery images hook
   const { images: allImages, loading, getRandomImages } = useGalleryImages();
   
   // Get 3 random images for homepage
   const galleryImages = getRandomImages(3);
+
+  // Countdown to event date (July 26, 2025 at 6:00 PM)
+  useEffect(() => {
+    const eventDate = new Date('2025-07-26T18:00:00').getTime();
+    
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const difference = eventDate - now;
+      
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     // Precargar imágenes críticas
@@ -89,14 +121,11 @@ const Inicio = () => {
             
             {/* Theme - Corona */}
             <div className="mb-8">
-              <p className="font-script text-2xl md:text-3xl text-primary-light">
-                Tema: Corona 👑
-              </p>
-            </div>{/* Jessica's Photo - Clean Rectangle with Extended Light Fade */}
+            </div>            {/* Jessica's Photo - Clean Rectangle */}
             <div className="flex justify-center mb-8">
               <div className="relative group">
-                {/* Photo container - Simple rectangle with sharp corners */}
-                <div className="w-80 h-[520px] md:w-96 md:h-[620px] lg:w-[450px] lg:h-[720px] xl:w-[500px] xl:h-[800px] overflow-hidden shadow-xl relative group-hover:scale-[1.02] transition-transform duration-700">                  <img 
+                {/* Photo container - Rectangle shape */}
+                <div className="w-80 h-[520px] md:w-96 md:h-[620px] lg:w-[450px] lg:h-[720px] xl:w-[500px] xl:h-[800px] overflow-hidden shadow-xl relative group-hover:scale-[1.02] transition-transform duration-700"><img 
                     src="./images/jessica-main.webp" 
                     alt="Jessica Paola" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -113,72 +142,55 @@ const Inicio = () => {
             </div>
               {/* Decorative Line with Roses */}
             <div className="flex justify-center items-center mb-8">
-              <span className="text-primary text-2xl mr-3">🌹</span>
+              <span className="text-primary text-2xl mr-3"></span>
               <div className="w-32 md:w-48 h-0.5 bg-primary"></div>
-              <span className="text-primary text-2xl ml-3">🌹</span>
-            </div>{/* Date and Time Info */}
-            <div className="space-y-6 font-serif text-gray-700">
-              <p className="text-lg md:text-xl">
+              <span className="text-primary text-2xl ml-3"></span>
+            </div>            {/* Date and Event Info */}
+            <div className="space-y-8 font-serif text-gray-700">
+              <p className="text-lg md:text-xl text-center">
                 <span className="text-primary font-medium">26 de Julio, 2025</span>
               </p>
               
-              {/* Ceremony Info */}
-              <div className="space-y-2">
-                <p className="text-base md:text-lg font-medium text-primary">
-                  Ceremonia Religiosa
-                </p>
-                <p className="text-sm md:text-base">
-                  <span className="text-primary">6:00 PM</span>
-                </p>
-                <p className="text-sm md:text-base">
-                  C. Tamaulipas #7305<br />
-                  Fracc. Ampliación Aeropuerto
-                </p>
-              </div>
-
-              {/* Reception Info */}
-              <div className="space-y-2">
-                <p className="text-base md:text-lg font-medium text-primary">
-                  Recepción
-                </p>
-                <p className="text-sm md:text-base">
-                  <span className="text-primary">8:30 PM</span>
-                </p>
-                <p className="text-sm md:text-base">
-                  C. Ramón Rayón #1658
-                </p>
-              </div>
-
-              {/* Dress Code */}
-              <div className="space-y-2">
-                <p className="text-base md:text-lg font-medium text-primary">
-                  Código de Vestimenta
-                </p>
-                <p className="text-sm md:text-base">
-                  Semiformal
-                </p>
-              </div>
-
-              {/* RSVP */}
-              <div className="space-y-2">
-                <p className="text-base md:text-lg font-medium text-primary">
-                  Confirma tu Asistencia
-                </p>
-                <p className="text-sm md:text-base">
-                  Antes del <span className="text-primary font-medium">15 de Julio, 2025</span>
-                </p>
-                <p className="text-sm md:text-base">
-                  Por WhatsApp
-                </p>
-              </div>
-
-              {/* Gift Info */}
-              <div className="space-y-2">
-                <p className="text-base md:text-lg font-medium text-primary">
-                  Mesa de Regalos
-                </p>
-                <p className="text-sm md:text-base">
-                  Buzón de dinero o lluvia de sobres 💝
+              {/* Countdown Timer */}
+              <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-primary/20">
+                <h3 className="font-script text-2xl md:text-3xl text-primary text-center mb-6">
+                  Faltan solo...
+                </h3>                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 text-center">
+                  {/* Days */}
+                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
+                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.days}</div>
+                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
+                      {timeLeft.days === 1 ? 'Día' : 'Días'}
+                    </div>
+                  </div>
+                  
+                  {/* Hours */}
+                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
+                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.hours}</div>
+                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
+                      {timeLeft.hours === 1 ? 'Hora' : 'Horas'}
+                    </div>
+                  </div>
+                  
+                  {/* Minutes */}
+                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
+                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.minutes}</div>
+                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
+                      {timeLeft.minutes === 1 ? 'Minuto' : 'Minutos'}
+                    </div>
+                  </div>
+                  
+                  {/* Seconds */}
+                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
+                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.seconds}</div>
+                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
+                      {timeLeft.seconds === 1 ? 'Segundo' : 'Segundos'}
+                    </div>
+                  </div>
+                </div>
+                
+                <p className="text-center mt-6 font-script text-lg md:text-xl text-primary">
+                  ¡Para mi celebración de XV años!
                 </p>
               </div>
             </div>
