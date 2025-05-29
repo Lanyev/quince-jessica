@@ -1,13 +1,30 @@
-import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {  
-  // Estado para controlar la página actual del navbar
+  // Estado para controlar la página actual del navbar móvil
   const [currentPage, setCurrentPage] = useState(0);
-  // Estado para controlar la dirección de la animación
-  const [direction, setDirection] = useState(0);
+  // Estado para detectar el tamaño de pantalla
+  const [isDesktop, setIsDesktop] = useState(false);
+  // Estado para controlar la animación
+  const [isAnimating, setIsAnimating] = useState(false);
+  // Estado para la dirección de la animación
+  const [slideDirection, setSlideDirection] = useState('');
+  // Hook para obtener la ubicación actual
+  const location = useLocation();
   
+  // Detectar tamaño de pantalla
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   // Definir todos los elementos de navegación en un array
   const navItems = useMemo(() => [
     // Página 0 - Principales
@@ -177,152 +194,206 @@ const Navbar = () => {
       }
     ]
   ], []);
+
+  // Lista plana de todos los elementos para navegación desktop
+  const allNavItems = useMemo(() => {
+    return navItems.flat();
+  }, [navItems]);
   
-  // Obtener el número total de páginas
+  // Función para verificar si un elemento está activo
+  const isActiveItem = (itemPath) => {
+    return location.pathname === itemPath;
+  };
+  
+  // Obtener el número total de páginas para móvil
   const totalPages = navItems.length;
   
-  // Ir a la página siguiente
+  // Ir a la página siguiente en móvil
   const nextPage = () => {
-    setDirection(1); // Ir a la derecha
-    setCurrentPage((prev) => (prev + 1) % totalPages);
+    if (isAnimating) return; // Prevenir múltiples animaciones
+    
+    setIsAnimating(true);
+    setSlideDirection('left'); // Los elementos se mueven hacia la izquierda
+    
+    setTimeout(() => {
+      setCurrentPage((prev) => (prev + 1) % totalPages);
+      setSlideDirection('');
+      setIsAnimating(false);
+    }, 150); // Duración de la animación de salida
   };
   
-  // Ir a la página anterior
+  // Ir a la página anterior en móvil
   const prevPage = () => {
-    setDirection(-1); // Ir a la izquierda
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+    if (isAnimating) return; // Prevenir múltiples animaciones
+    
+    setIsAnimating(true);
+    setSlideDirection('right'); // Los elementos se mueven hacia la derecha
+    
+    setTimeout(() => {
+      setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+      setSlideDirection('');
+      setIsAnimating(false);
+    }, 150); // Duración de la animación de salida
   };
 
-  // Variantes para animación de transición que respetan la dirección correcta
-  const variants = {
-    enter: (dir) => ({
-      x: dir > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -300 : 300,
-      opacity: 0,
-    }),
-  };
+  // Desktop Navigation Component
+  const DesktopNavigation = () => (
+    <nav className="desktop-nav fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+      <div className="desktop-nav-list">
+        {allNavItems.map((item, index) => {
+          const isActive = isActiveItem(item.to);
+          return (
+            <Link
+              key={`${item.to}-${index}`}
+              to={item.to}
+              className={`desktop-nav-item group ${isActive ? 'active' : ''}`}
+            >
+              <div className={`desktop-nav-icon group-hover:scale-110 transition-transform duration-200 ${isActive ? 'active-icon' : ''}`}>
+                {item.icon}
+              </div>
+              <span className={`desktop-nav-label ${isActive ? 'active-label' : ''}`}>
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
+  );
 
-  // Obtener los elementos de la página actual
-  const currentItems = navItems[currentPage];
-  
-  // Mostrar exactamente 3 iconos (o menos si no hay suficientes)
-  const ICONS_TO_SHOW = 3;
-  const visibleItems = currentItems.slice(0, ICONS_TO_SHOW);
-  // Botón de navegación (para reutilizar código)
-  const NavButton = ({ onClick, icon, label, position }) => (
-    <div className={`w-12 h-full flex items-center ${position === 'left' ? 'justify-start' : 'justify-end'}`}>
+  // Mobile Navigation Component (navegación optimizada sin animaciones complejas)
+  const MobileNavigation = () => {
+    const NavButton = ({ onClick, icon, label }) => (
       <button
         onClick={onClick}
-        className="w-10 h-10 flex items-center justify-center hover:bg-primary-light rounded-lg transition-all duration-200 active:scale-95"
+        disabled={isAnimating}
+        className={`hover:bg-white/20 transition-all duration-300 transform hover:scale-105
+                   active:scale-95 flex flex-col items-center justify-center gap-1 min-w-[50px] rounded-lg p-2
+                   ${isAnimating ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+        style={{ minHeight: '60px', color: 'var(--silver-color)' }}
         aria-label={label}
       >
-        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-primary-light bg-opacity-30 shadow-inner">
+        <div className={`w-5 h-5 transition-transform duration-200 ${isAnimating ? 'animate-pulse' : ''}`} style={{ color: 'var(--silver-color)' }}>
           {icon}
         </div>
+        <span className="text-xs font-nav font-medium" style={{ color: 'var(--silver-color)' }}>
+          {label.split(' ')[0]}
+        </span>
       </button>
-    </div>
-  );
-  return (
-    <div className="fixed bottom-0 left-0 right-0 w-full mx-auto max-w-[calc(100%-30px)] bg-primary text-white py-2 px-3 rounded-xl" style={{ maxWidth: 'calc(100% - 30px)', marginLeft: 'auto', marginRight: 'auto', marginBottom: '15px', zIndex: 5 }}>
-      <div className="flex justify-between items-center w-full h-[70px]">
-        {/* Botón Anterior (siempre visible) */}        <NavButton
-          onClick={prevPage}
-          icon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          }
-          label="Página anterior"
-          position="left"
-        />
+    );
 
-        {/* Contenedor central de los iconos con ancho fijo */}
-        <div className="flex-1 flex justify-center items-center">
-          <div className="w-full max-w-md flex justify-between items-center">
-            <AnimatePresence initial={false} mode="wait" custom={direction}>
-              <motion.div
-                key={`page-${currentPage}`}
-                className="flex justify-between items-center w-full"
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ 
-                  duration: 0.3, 
-                  ease: "easeInOut",
-                  opacity: { duration: 0.2 }
-                }}
+    // Obtener los elementos de la página actual
+    const currentItems = navItems[currentPage];
+    
+    // Mostrar exactamente 3 iconos (o menos si no hay suficientes)
+    const ICONS_TO_SHOW = 3;
+    const visibleItems = currentItems.slice(0, ICONS_TO_SHOW);
+
+    return (
+      <div className="fixed bottom-0 left-0 right-0 w-full mx-auto max-w-[calc(100%-30px)] bg-primary text-white py-2 px-3 rounded-xl border-2 border-primary" style={{ maxWidth: 'calc(100% - 30px)', marginLeft: 'auto', marginRight: 'auto', marginBottom: '15px', zIndex: 5 }}>
+        <div className="flex justify-between items-center w-full h-[70px]">
+          {/* Botón Anterior */}
+          <NavButton
+            onClick={prevPage}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5"
               >
-                {/* Elementos de navegación centrados y espaciados uniformemente */}
-                {visibleItems.map((item, index) => (
-                  <div key={`nav-${currentPage}-${index}`} className="flex-1 flex justify-center items-center">                    <Link
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            }
+            label="Anterior"
+          />
+
+          {/* Contenedor central de los iconos */}
+          <div className="flex-1 flex justify-center items-center">
+            <div 
+              className={`w-full max-w-md flex justify-between items-center transition-all duration-300 ${
+                slideDirection === 'left' ? 'navbar-slide-left' : 
+                slideDirection === 'right' ? 'navbar-slide-right' : 
+                slideDirection ? 'navbar-slide-in' : ''
+              }`} 
+              key={currentPage}
+            >
+              {/* Elementos de navegación centrados */}
+              {visibleItems.map((item, index) => {
+                const isActive = isActiveItem(item.to);
+                return (
+                  <div 
+                    key={`nav-${currentPage}-${index}`} 
+                    className={`flex-1 flex justify-center items-center ${slideDirection ? 'navbar-icon-animate' : ''}`}
+                    style={slideDirection ? { animationDelay: `${index * 100}ms` } : {}}
+                  >
+                    <Link
                       to={item.to}
-                      className="flex flex-col items-center justify-center p-1 hover:bg-primary-light rounded-lg transition-all duration-200 active:scale-95"
+                      className={`flex flex-col items-center justify-center p-2 hover:bg-white/20 rounded-lg transition-all duration-200 active:scale-95 ${isActive ? 'mobile-nav-active' : ''}`}
+                      style={{ color: 'var(--silver-color)' }}
                     >
-                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-primary-light bg-opacity-30 shadow-inner mb-1">
+                      <div className={`w-8 h-8 flex items-center justify-center mb-1 ${isActive ? 'mobile-icon-active' : ''}`} style={{ color: 'var(--silver-color)' }}>
                         {item.icon}
                       </div>
-                      <span className="text-xs font-nav text-center">{item.label}</span>
+                      <span className={`text-xs font-nav text-center ${isActive ? 'mobile-label-active' : ''}`} style={{ color: 'var(--silver-color)' }}>{item.label}</span>
                     </Link>
                   </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                );
+              })}
+            </div>
           </div>
-        </div>
 
-        {/* Botón Siguiente (siempre visible) */}        <NavButton
-          onClick={nextPage}
-          icon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          }
-          label="Página siguiente"
-          position="right"
-        />
-      </div>
-        {/* Indicador de página */}
-      <div className="flex justify-center mt-0.5">
-        {Array.from({ length: totalPages }).map((_, i) => (
-          <button 
-            key={`indicator-${i}`}
-            onClick={() => {
-              setDirection(i > currentPage ? 1 : -1);
-              setCurrentPage(i);
-            }}
-            className={`w-1.5 h-1.5 mx-0.5 rounded-full ${currentPage === i ? 'bg-white' : 'bg-white/30'}`}
-            aria-label={`Ir a la página ${i + 1} de ${totalPages}`}
+          {/* Botón Siguiente */}
+          <NavButton
+            onClick={nextPage}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            }
+            label="Siguiente"
           />
-        ))}
+        </div>
+        
+        {/* Indicador de página */}
+        <div className="flex justify-center mt-0.5">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button 
+              key={`indicator-${i}`}
+              onClick={() => {
+                if (i === currentPage) return; // No hacer nada si ya está en esa página
+                setCurrentPage(i); // Cambio directo sin animaciones
+              }}
+              className={`w-1.5 h-1.5 mx-0.5 rounded-full transition-all duration-300 border border-white/20 transform hover:scale-125 ${
+                currentPage === i 
+                  ? 'bg-white scale-110 shadow-lg' 
+                  : 'bg-white/30 hover:bg-white/50'
+              }`}
+              aria-label={`Ir a la página ${i + 1} de ${totalPages}`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    );
+  };
+
+  return (
+    <>
+      {isDesktop ? <DesktopNavigation /> : <MobileNavigation />}
+    </>
   );
 };
 

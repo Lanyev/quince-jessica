@@ -3,11 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",  "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "dev": "vite --host",
+    "test:responsive": "echo 'Abre http://localhost:5173 en múltiples dispositivos para probar responsive'",
+    "analyze": "vite build --mode analyze"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",

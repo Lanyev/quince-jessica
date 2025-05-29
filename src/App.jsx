@@ -5,6 +5,7 @@ import MusicPlayer from './components/MusicPlayer.jsx';
 import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
 import BetterAnimatedRoutes from './components/BetterAnimatedRoutes';
+import ResponsiveTest from './components/ResponsiveTest';
 import { getBackgroundImageUrl } from './utils/imageUtils';
 import Inicio from './pages/Inicio';
 import Ceremonia from './pages/Ceremonia';
@@ -21,7 +22,12 @@ function App() {
   const audioSrc = './audio/background-music.mp3'; 
   
   // Estado para el fondo personalizado
-  const [bgStyle, setBgStyle] = useState({});  useEffect(() => {
+  const [bgStyle, setBgStyle] = useState({});
+
+  // Estado para mostrar el helper responsive (solo en desarrollo)
+  const showResponsiveHelper = import.meta.env.DEV || window.location.search.includes('debug=responsive');
+
+  useEffect(() => {
     // Puedes cambiar esto a la ruta de tu imagen de fondo cuando la tengas
     const bgImagePath = getBackgroundImageUrl('bg-pattern.png');
     
@@ -47,7 +53,7 @@ function App() {
   return (
     <Router>
       <div className="App flex flex-col min-h-screen" style={bgStyle}>
-        <div className="flex-grow pb-[65px]">
+        <div className="flex-grow pb-[65px] lg:pb-[100px]">
           <BetterAnimatedRoutes>
             <Route path="/" element={<Inicio />} />
             <Route path="/ceremonia" element={<Ceremonia />} />
@@ -62,7 +68,8 @@ function App() {
         </div>
         <MusicPlayer audioSrc={audioSrc} />
         <ScrollToTop />
-        <footer className="w-full fixed bottom-0 left-0 right-0 z-5 p-[15px]">
+        {showResponsiveHelper && <ResponsiveTest />}
+        <footer className="w-full fixed bottom-0 left-0 right-0 z-5 no-print">
           <Navbar />
         </footer>
       </div>
