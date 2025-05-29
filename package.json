@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "dev": "vite --host",
     "test:responsive": "echo 'Abre http://localhost:5173 en múltiples dispositivos para probar responsive'",
-    "analyze": "vite build --mode analyze"
+    "analyze": "vite build --mode analyze",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
