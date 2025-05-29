@@ -1,23 +1,52 @@
-# Carpeta de Imágenes para Galería
+# Carpeta de Imágenes para Galería - Jessica Paola XV Años
 
-Esta carpeta es donde debes colocar las imágenes que quieres mostrar en la galería de fotos de la quinceañera.
+Esta carpeta contiene las imágenes organizadas en categorías para la galería de fotos de la quinceañera.
 
-## Instrucciones:
+## Estructura de Carpetas:
 
-1. Coloca aquí las fotos en formato JPG o PNG.
-2. Para que aparezcan en la galería, debes editar el archivo `src/pages/Galeria.jsx`.
-3. Busca el arreglo `galleryImages` al principio del archivo y añade tus imágenes siguiendo el formato de ejemplo:
+### 📁 `/sesion-vestido/`
+Fotos de la sesión fotográfica con vestido de XV años
+- Retratos con vestido elegante
+- Fotos de estudio profesional
+- Poses formales
 
-```javascript
-const galleryImages = [
-  { id: 1, src: '/images/gallery/foto1.jpg', title: 'Sesión Pre-XV', description: 'Fotos de la sesión previa' },
-  { id: 2, src: '/images/gallery/foto2.jpg', title: 'Con mis amigas', description: 'Preparativos' },
-  // Añade más imágenes siguiendo el mismo formato
-];
-```
+### 📁 `/sesion-casual/`
+Fotos de la sesión fotográfica con ropa casual
+- Outfits casuales y modernos
+- Poses más relajadas y naturales
+- Fotos al aire libre o en ambiente casual
 
-## Recomendaciones:
+### 📁 `/padrinos/`
+Fotos con padrinos, familiares y personas especiales
+- Fotos con padrinos de XV años
+- Fotos familiares
+- Momentos especiales con seres queridos
 
-- Redimensiona tus imágenes antes de añadirlas (tamaño recomendado: 1200x800 píxeles).
-- Usa nombres descriptivos para los archivos.
-- Mantén un buen balance entre calidad y tamaño de archivo para que la página cargue rápido.
+### 📁 `/evento/`
+Fotos del día del evento (se subirán después de la celebración)
+- Ceremonia religiosa
+- Vals y bailes tradicionales
+- Fiesta y celebración
+- Momentos destacados del evento
+
+## Instrucciones para subir fotos:
+
+1. **Coloca las imágenes en la carpeta correspondiente** según la categoría
+2. **Usa nombres descriptivos** para los archivos (ej: `jessica-vestido-01.jpg`)
+3. **Formatos recomendados**: JPG, PNG, WEBP
+4. **Tamaño recomendado**: 1200x800 píxeles para optimizar carga
+5. **Calidad**: Balance entre calidad visual y tamaño de archivo
+
+## Configuración del sistema:
+
+El sistema carga automáticamente todas las imágenes de estas carpetas. Solo necesitas:
+- Subir las fotos a la carpeta correcta
+- Reiniciar el servidor de desarrollo si es necesario
+- Las imágenes aparecerán automáticamente en la galería
+
+## Notas importantes:
+
+- ✅ **Sistema automático**: No necesitas editar código para añadir fotos
+- ✅ **Categorías organizadas**: Las fotos se muestran agrupadas por categoría
+- ✅ **Carga optimizada**: El sistema optimiza automáticamente la carga de imágenes
+- 🚫 **No hay sistema de upload**: Las fotos se suben directamente al servidor
