@@ -39,7 +39,7 @@ const InvitationCard = () => {
     }
   };
 
-  const handleCreateInvitation = async (format = 'png') => {
+  const handleCreateInvitation = async () => {
     if (!invitationName.trim()) return;
     
     setIsCreating(true);
@@ -54,27 +54,22 @@ const InvitationCard = () => {
         height: cardRef.current.offsetHeight,
       });
       
-      let image;
-      if (format === 'jpeg') {
-        // Crear un canvas con fondo blanco para JPEG
-        const canvasWithBg = document.createElement('canvas');
-        const ctx = canvasWithBg.getContext('2d');
-        canvasWithBg.width = canvas.width;
-        canvasWithBg.height = canvas.height;
-        
-        // Fondo blanco
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(0, 0, canvasWithBg.width, canvasWithBg.height);
-        
-        // Dibujar la invitación encima
-        ctx.drawImage(canvas, 0, 0);
-        
-        image = canvasWithBg.toDataURL('image/jpeg', 0.95);
-      } else {
-        image = canvas.toDataURL('image/png');
-      }
+      // Crear un canvas con fondo blanco para JPEG
+      const canvasWithBg = document.createElement('canvas');
+      const ctx = canvasWithBg.getContext('2d');
+      canvasWithBg.width = canvas.width;
+      canvasWithBg.height = canvas.height;
       
-      setCardImage({ data: image, format });
+      // Fondo blanco
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, canvasWithBg.width, canvasWithBg.height);
+      
+      // Dibujar la invitación encima
+      ctx.drawImage(canvas, 0, 0);
+      
+      const image = canvasWithBg.toDataURL('image/jpeg', 0.95);
+      
+      setCardImage({ data: image, format: 'jpeg' });
       setShowDownloadOptions(true);
     } catch (error) {
       console.error('Error creating invitation card:', error);
@@ -83,14 +78,17 @@ const InvitationCard = () => {
     }
   };
 
-  const handleDownload = (format) => {
+  const handleDownload = () => {
     if (!cardImage) return;
     
     const link = document.createElement('a');
     link.href = cardImage.data;
-    const extension = format || cardImage.format;
-    link.download = `Invitacion_XV_Jessica_${invitationName.trim().replace(/\s+/g, '_')}.${extension}`;
+    link.download = `Invitacion_XV_Jessica_${invitationName.trim().replace(/\s+/g, '_')}.jpeg`;
+    
+    // Forzar la descarga
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   const handleShare = async () => {
@@ -323,13 +321,13 @@ const InvitationCard = () => {
               </div>
               
               {/* Botones de acción */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="w-full">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  onClick={() => handleCreateInvitation('png')}
+                  onClick={handleCreateInvitation}
                   disabled={isCreating || !invitationName.trim()}
-                  className={`py-3 px-6 rounded-lg font-serif font-medium shadow-md flex items-center justify-center transition-all ${
+                  className={`w-full py-4 px-6 rounded-lg font-serif font-medium shadow-md flex items-center justify-center transition-all ${
                     isCreating || !invitationName.trim()
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
                       : 'bg-primary text-white hover:bg-primary-light'
@@ -341,43 +339,14 @@ const InvitationCard = () => {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Creando...
+                      Creando invitación...
                     </>
                   ) : (
                     <>
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      Crear PNG
-                    </>
-                  )}
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => handleCreateInvitation('jpeg')}
-                  disabled={isCreating || !invitationName.trim()}
-                  className={`py-3 px-6 rounded-lg font-serif font-medium shadow-md flex items-center justify-center transition-all ${
-                    isCreating || !invitationName.trim()
-                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                      : 'bg-primary-light text-white hover:bg-primary'
-                  }`}
-                >
-                  {isCreating ? (
-                    <>
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Creando...
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                      </svg>
-                      Crear JPEG
+                      Crear invitación JPEG
                     </>
                   )}
                 </motion.button>
@@ -403,43 +372,27 @@ const InvitationCard = () => {
               />
             </div>
             
-            <div className="w-full max-w-lg space-y-3">
+            <div className="w-full max-w-lg space-y-4">
               <div className="text-center mb-4">
                 <h4 className="font-script text-2xl text-primary mb-2">¡Tu invitación está lista!</h4>
                 <p className="font-serif text-gray-600">
-                  Descarga en tu formato preferido o compártela directamente
+                  Haz clic en el botón para descargar tu invitación en formato JPEG
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => handleDownload('png')}
-                  className="py-3 px-6 rounded-lg font-serif font-medium shadow-md flex items-center justify-center bg-primary text-white hover:bg-primary-light transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                  Descargar PNG
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => handleDownload('jpeg')}
-                  className="py-3 px-6 rounded-lg font-serif font-medium shadow-md flex items-center justify-center bg-primary-light text-white hover:bg-primary transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                  Descargar JPEG
-                </motion.button>
-              </div>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={handleDownload}
+                className="w-full py-4 px-6 rounded-lg font-serif font-medium shadow-md flex items-center justify-center bg-primary text-white hover:bg-primary-light transition-colors text-lg"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Descargar invitación JPEG
+              </motion.button>
               
               <motion.button
                 whileHover={{ scale: 1.03 }}

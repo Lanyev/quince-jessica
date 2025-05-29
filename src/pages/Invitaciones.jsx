@@ -19,7 +19,7 @@ const Invitaciones = () => {
         </div>
 
         {/* Componente principal de invitación */}
-        <div className="max-w-6xl mx-auto mb-16">
+        <div id="invitation-creator" className="max-w-6xl mx-auto mb-16">
           <InvitationCard />
         </div>
 
@@ -149,7 +149,7 @@ const Invitaciones = () => {
               </div>
               <h3 className="font-serif font-medium text-gray-800 mb-2">Genera</h3>
               <p className="font-serif text-sm text-gray-600">
-                Crea tu invitación en formato PNG o JPEG de alta calidad
+                Crea tu invitación en formato JPEG de alta calidad
               </p>
             </div>
 
@@ -191,9 +191,9 @@ const Invitaciones = () => {
                     <span className="text-primary text-sm">✓</span>
                   </div>
                   <div>
-                    <h4 className="font-serif font-medium text-gray-800 mb-1">Elige el formato correcto</h4>
+                    <h4 className="font-serif font-medium text-gray-800 mb-1">Formato de alta calidad</h4>
                     <p className="font-serif text-sm text-gray-600">
-                      PNG para mejor calidad, JPEG para archivos más pequeños
+                      Las invitaciones se descargan en JPEG optimizado para compartir
                     </p>
                   </div>
                 </div>
@@ -262,15 +262,20 @@ const Invitaciones = () => {
               o como opción principal para tu celebración.
             </p>
             <div className="flex justify-center">
-              <a 
-                href="#invitation-creator" 
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('invitation-creator');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
                 className="inline-flex items-center px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary-light transition-colors font-serif font-medium shadow-md"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
                 Crear mi invitación
-              </a>
+              </button>
             </div>
           </div>
         </div>
