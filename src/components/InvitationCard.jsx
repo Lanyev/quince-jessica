@@ -133,7 +133,7 @@ const InvitationCard = () => {
     return (
       <div 
         ref={cardRef}
-        className={`w-full max-w-lg aspect-[3/4] relative rounded-2xl shadow-2xl overflow-hidden mb-6 ${template.bgClass}`}
+        className={`w-full max-w-xs sm:max-w-sm md:max-w-lg aspect-[3/4] relative rounded-2xl shadow-2xl overflow-hidden mb-6 ${template.bgClass}`}
       >
         {/* Overlay decorativo */}
         <div className="absolute inset-0 bg-black/20"></div>
@@ -152,7 +152,7 @@ const InvitationCard = () => {
         </div>
         
         {/* Contenido principal */}
-        <div className="absolute inset-0 flex flex-col items-center justify-between p-8 text-white z-10">
+        <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 md:p-8 text-white z-10">
           {/* Header */}
           <div className="text-center w-full">
             <motion.div
@@ -161,14 +161,14 @@ const InvitationCard = () => {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center">
-                <div className="w-8 h-8 bg-white/20 rounded-full"></div>
+              <div className="absolute -top-4 sm:-top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 border-2 border-white/30 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full"></div>
               </div>
-              <p className="font-serif text-lg tracking-wider pt-8" style={{ color: template.accentColor }}>
+              <p className="font-serif text-sm sm:text-base md:text-lg tracking-wider pt-6 sm:pt-8" style={{ color: template.accentColor }}>
                 Te invito a mi
               </p>
-              <h2 className="font-script text-6xl mt-2 mb-1 drop-shadow-lg">XV Años</h2>
-              <div className="w-20 h-1 mx-auto rounded-full" style={{ backgroundColor: template.accentColor }}></div>
+              <h2 className="font-script text-4xl sm:text-5xl md:text-6xl mt-1 sm:mt-2 mb-1 drop-shadow-lg">XV Años</h2>
+              <div className="w-16 sm:w-20 h-1 mx-auto rounded-full" style={{ backgroundColor: template.accentColor }}></div>
             </motion.div>
           </div>
           
@@ -180,17 +180,17 @@ const InvitationCard = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="relative">
-                <div className="absolute -inset-4 bg-white/10 rounded-full blur-xl"></div>
-                <h1 className="font-script text-6xl mb-3 relative z-10 drop-shadow-2xl">
+                <div className="absolute -inset-2 sm:-inset-4 bg-white/10 rounded-full blur-xl"></div>
+                <h1 className="font-script text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3 relative z-10 drop-shadow-2xl leading-tight">
                   Jessica Paola
                 </h1>
               </div>
-              <div className="flex items-center justify-center space-x-4 mt-4">
-                <div className="w-8 h-[1px]" style={{ backgroundColor: template.accentColor }}></div>
-                <p className="font-serif text-lg tracking-widest" style={{ color: template.accentColor }}>
+              <div className="flex items-center justify-center space-x-2 sm:space-x-4 mt-2 sm:mt-4">
+                <div className="w-6 sm:w-8 h-[1px]" style={{ backgroundColor: template.accentColor }}></div>
+                <p className="font-serif text-sm sm:text-base md:text-lg tracking-widest" style={{ color: template.accentColor }}>
                   25 • JUNIO • 2025
                 </p>
-                <div className="w-8 h-[1px]" style={{ backgroundColor: template.accentColor }}></div>
+                <div className="w-6 sm:w-8 h-[1px]" style={{ backgroundColor: template.accentColor }}></div>
               </div>
             </motion.div>
           </div>
@@ -202,9 +202,9 @@ const InvitationCard = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="w-full h-[1px] bg-white/30 mb-4"></div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                <p className="font-serif text-sm tracking-wide mb-2" style={{ color: template.accentColor }}>
+              <div className="w-full h-[1px] bg-white/30 mb-3 sm:mb-4"></div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-white/20">
+                <p className="font-serif text-xs sm:text-sm tracking-wide mb-2" style={{ color: template.accentColor }}>
                   {invitationName ? `Especialmente para: ${invitationName}` : "Para: _______________"}
                 </p>
                 {customMessage && (
@@ -213,17 +213,17 @@ const InvitationCard = () => {
                   </p>
                 )}
                 <div className="font-serif text-xs tracking-wide text-white/90 space-y-1">
-                  <div className="flex items-center justify-center space-x-2">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="flex items-center justify-center space-x-1 sm:space-x-2">
+                    <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
-                    <span>Ceremonia: 18:00 hrs - Iglesia de San Juan</span>
+                    <span className="text-xs leading-tight">Ceremonia: 18:00 hrs - Iglesia de San Juan</span>
                   </div>
-                  <div className="flex items-center justify-center space-x-2">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="flex items-center justify-center space-x-1 sm:space-x-2">
+                    <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clipRule="evenodd" />
                     </svg>
-                    <span>Recepción: 20:00 hrs - Salón Jardines del Bosque</span>
+                    <span className="text-xs leading-tight">Recepción: 20:00 hrs - Salón Jardines del Bosque</span>
                   </div>
                 </div>
               </div>
