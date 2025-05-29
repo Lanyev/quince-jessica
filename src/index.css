@@ -178,6 +178,59 @@ h1, h2, h3 {
   }
 }
 
+/* Animaciones de brillo para el nombre Jessica Paola */
+@keyframes sparkle-text {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(128, 0, 32, 0.8),
+      0 0 20px rgba(128, 0, 32, 0.6),
+      0 0 30px rgba(128, 0, 32, 0.4),
+      0 0 40px rgba(128, 0, 32, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(128, 0, 32, 1),
+      0 0 25px rgba(128, 0, 32, 0.8),
+      0 0 35px rgba(128, 0, 32, 0.6),
+      0 0 45px rgba(128, 0, 32, 0.4),
+      0 0 55px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Marco elegante para la foto */
+@keyframes photo-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 8px rgba(128, 0, 32, 0.1),
+      0 0 16px rgba(128, 0, 32, 0.05),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 0 12px rgba(128, 0, 32, 0.15),
+      0 0 24px rgba(128, 0, 32, 0.08),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+}
+
+@keyframes photo-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-1px) scale(1.002);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 1s ease-out;
 }
@@ -200,6 +253,60 @@ h1, h2, h3 {
 
 .animate-slide-in-right {
   animation: slide-in-right 1s ease-out;
+}
+
+/* Clases para el nombre con brillo */
+.sparkle-text {
+  animation: sparkle-text 3s ease-in-out infinite;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color) 30%,
+    rgba(255, 215, 0, 0.8) 50%,
+    var(--primary-color) 70%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sparkle-text 3s ease-in-out infinite, shimmer 2s linear infinite;
+}
+
+/* Marco elegante para la foto */
+.elegant-photo-frame {
+  position: relative;
+  animation: photo-float 8s ease-in-out infinite;
+}
+
+.elegant-photo-frame::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    rgba(255, 215, 0, 0.2),
+    var(--primary-color),
+    rgba(255, 215, 0, 0.2)
+  );
+  background-size: 400% 400%;
+  border-radius: 1rem;
+  z-index: -1;
+  animation: shimmer 6s ease-in-out infinite, photo-glow 8s ease-in-out infinite;
+}
+
+.elegant-photo-frame::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  z-index: -1;
 }
 
 /* Custom scrollbar styles */

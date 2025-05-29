@@ -99,7 +99,7 @@ const Inicio = () => {
       </div>
 
       {/* Invitation Header Section */}
-      <div className={`invitation-header container-responsive desktop-section tablet-section mobile-section transition-all duration-500 ease-out bg-white/40 backdrop-blur-sm ${isVisible ? 'opacity-85 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+      <div className={`invitation-header container-responsive desktop-section tablet-section mobile-section transition-all duration-500 ease-out bg-white/40 backdrop-blur-sm px-4 sm:px-6 md:px-8 ${isVisible ? 'opacity-85 translate-y-0' : 'opacity-0 translate-y-5'}`}>
         <div className="content-max-width text-center">
           {/* Parents Names */}
           <div className="mb-8">
@@ -109,10 +109,10 @@ const Inicio = () => {
           </div>
 
           {/* Invitation Text */}
-          <div className="mb-12">
-            <p className="font-serif text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-content-width">
-              Tienen el honor de invitar a usted y a su apreciable familia<br />
-              a la celebración de los XV años de su hija:
+          <div className="mb-12 px-2 sm:px-4">
+            <p className="font-serif text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-content-width max-w-2xl mx-auto">
+              Tienen el honor de invitar a usted y a su apreciable familia<br className="hidden sm:inline" />
+              <span className="sm:hidden"> </span>a la celebración de los XV años de su hija:
             </p>
           </div>
 
@@ -126,11 +126,11 @@ const Inicio = () => {
             <div className="mb-8">
             </div>
 
-            {/* Jessica's Photo - Clean Rectangle with responsive sizing */}
+            {/* Jessica's Photo - Clean Rectangle with responsive sizing and elegant frame */}
             <div className="flex justify-center mb-8">
-              <div className="relative group">
+              <div className="relative group elegant-photo-frame">
                 {/* Photo container - Responsive rectangle shape */}
-                <div className="w-80 h-[520px] mobile-hero-image md:w-96 md:h-[620px] lg:w-[450px] lg:h-[720px] xl:w-[500px] xl:h-[800px] landscape-hero-image overflow-hidden shadow-xl relative group-hover:scale-[1.02] transition-transform duration-700">
+                <div className="w-80 h-[520px] mobile-hero-image md:w-96 md:h-[620px] lg:w-[450px] lg:h-[720px] xl:w-[500px] xl:h-[800px] landscape-hero-image overflow-hidden shadow-xl relative group-hover:scale-[1.02] transition-transform duration-700 rounded-2xl">
                   <img 
                     src="./images/jessica-main.webp" 
                     alt="Jessica Paola" 
@@ -143,6 +143,12 @@ const Inicio = () => {
                   
                   {/* Elegant overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-primary-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Decorative corners */}
+                  <div className="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute top-2 right-2 w-6 h-6 border-r-2 border-t-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-2 left-2 w-6 h-6 border-l-2 border-b-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>
             </div>
@@ -155,13 +161,13 @@ const Inicio = () => {
             </div>
 
             {/* Date and Event Info */}
-            <div className="space-y-8 font-serif text-gray-700">
+            <div className="space-y-8 font-serif text-gray-700 px-2 sm:px-4">
               <p className="text-lg md:text-xl lg:text-2xl text-center">
                 <span className="text-primary font-medium">26 de Julio, 2025</span>
               </p>
               
               {/* Countdown Timer - Responsive grid */}
-              <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-primary/20">
+              <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-primary/20 mx-2 sm:mx-4 md:mx-0">
                 <h3 className="font-script text-2xl md:text-3xl lg:text-4xl text-primary text-center mb-6">
                   Faltan solo...
                 </h3>
@@ -216,14 +222,14 @@ const Inicio = () => {
 
       {/* Photo Gallery Collage Section */}
       <div className="gallery-section bg-white/30 backdrop-blur-sm py-16 relative">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
           
           {/* Gallery Title */}
           <div className="text-center mb-12">
             <h3 className="font-script text-3xl md:text-4xl lg:text-5xl text-primary mb-4">
               Momentos Especiales
             </h3>
-            <p className="font-serif text-gray-600 text-base md:text-lg">
+            <p className="font-serif text-gray-600 text-base md:text-lg px-2 sm:px-0">
               Una colección de recuerdos de estos años maravillosos
             </p>
           </div>
