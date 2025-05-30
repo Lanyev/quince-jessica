@@ -5,7 +5,7 @@ import MusicPlayer from './components/MusicPlayer.jsx';
 import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
 import BetterAnimatedRoutes from './components/BetterAnimatedRoutes';
-import ResponsiveTest from './components/ResponsiveTest';
+import ColorPaletteSelector from './components/ColorPaletteSelector';
 import { getBackgroundImageUrl } from './utils/imageUtils';
 import Inicio from './pages/Inicio';
 import Ceremonia from './pages/Ceremonia';
@@ -23,9 +23,6 @@ function App() {
   
   // Estado para el fondo personalizado
   const [bgStyle, setBgStyle] = useState({});
-
-  // Estado para mostrar el helper responsive (solo en desarrollo)
-  const showResponsiveHelper = import.meta.env.DEV || window.location.search.includes('debug=responsive');
 
   useEffect(() => {
     // Puedes cambiar esto a la ruta de tu imagen de fondo cuando la tengas
@@ -68,7 +65,7 @@ function App() {
         </div>
         <MusicPlayer audioSrc={audioSrc} />
         <ScrollToTop />
-        {showResponsiveHelper && <ResponsiveTest />}
+        <ColorPaletteSelector />
         <footer className="w-full fixed bottom-0 left-0 right-0 z-5 no-print">
           <Navbar />
         </footer>

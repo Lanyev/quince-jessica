@@ -1,3 +1,5 @@
+import daisyui from 'daisyui';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,30 +9,45 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': '#800020', // Color principal (Borgoña)
-        'primary-light': '#a02040', // Versión más clara del color principal
-        'primary-dark': '#600010', // Versión más oscura del color principal
-        'secondary': '#FFFFFF', // Color secundario (Blanco)
-      },      fontFamily: {
-        'script': ['Great Vibes', 'Allura', 'Dancing Script', 'cursive'], // Fuente elegante para títulos principales
-        'serif': ['Libre Baskerville', 'Georgia', 'serif'], // Fuente serif para textos formales
-        'display': ['Noto Sans Display', 'sans-serif'], // Fuente sans para la navbar y modal
+        'primary': 'var(--primary-color)',
+        'primary-light': 'var(--primary-light)',
+        'primary-dark': 'var(--primary-dark)',
+        'primary-muted': 'var(--primary-muted)',
+        'primary-lighter': 'var(--primary-lighter)',
+        'primary-darker': 'var(--primary-darker)',
+        'secondary': 'var(--secondary-color)',
+        'accent': 'var(--accent-color)',
+        'silver': 'var(--silver-color)',
+        'silver-light': 'var(--silver-light)',
+        'text': {
+          'primary': 'var(--text-primary)',
+          'light': 'var(--text-light)',
+          'dark': 'var(--text-dark)',
+          'on-primary': 'var(--text-on-primary)',
+          'on-light': 'var(--text-on-light)',
+          'on-dark': 'var(--text-on-dark)'
+        }
+      },
+      fontFamily: {
+        'script': ['Great Vibes', 'Allura', 'Dancing Script', 'cursive'],
+        'serif': ['Libre Baskerville', 'Georgia', 'serif'],
+        'display': ['Noto Sans Display', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       }
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [daisyui],
   daisyui: {
     themes: [
       {
         mytheme: {
-          "primary": "#800020",
-          "secondary": "#FFFFFF",
-          "accent": "#a02040",
+          "primary": "var(--primary-color)",
+          "secondary": "var(--secondary-color)",
+          "accent": "var(--accent-color)",
           "neutral": "#3d4451",
-          "base-100": "#FFFFFF",
+          "base-100": "var(--secondary-color)",
           "base-200": "#f8f9fa",
           "base-300": "#e9ecef",
           "info": "#3ABFF8",

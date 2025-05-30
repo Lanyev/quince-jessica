@@ -2,12 +2,29 @@
 @import "tailwindcss";
 
 :root {
+  /* Colores principales */
   --primary-color: #800020;
   --primary-light: #a02040;
   --primary-dark: #600010;
+  --primary-muted: #70001C;
+  --primary-lighter: #c04060;
+  --primary-darker: #400010;
+  
+  /* Colores de fondo */
   --secondary-color: #FFFFFF;
+  --accent-color: #B8860B;
   --silver-color: #e5e7eb;
   --silver-light: #f3f4f6;
+  
+  /* Colores de texto */
+  --text-primary: #260009;
+  --text-light: #400012;
+  --text-dark: #FFFFFF;
+  --text-on-primary: #FFFFFF;
+  --text-on-light: #1A1A1A;
+  --text-on-dark: #FFFFFF;
+  
+  /* Fuentes */
   --font-display: 'Noto Sans Display', sans-serif;
 }
 
@@ -18,11 +35,18 @@ html {
 body {
   font-family: 'Libre Baskerville', Georgia, serif;
   background-color: var(--secondary-color);
+  color: var(--text-primary);
   overflow-x: hidden; /* Prevenir scroll horizontal */
 }
 
 h1, h2, h3 {
   font-family: 'Great Vibes', 'Allura', 'Dancing Script', cursive;
+  color: var(--primary-color);
+}
+
+p {
+  color: var(--text-light);
+  line-height: 1.8;
 }
 
 .font-nav {
@@ -34,49 +58,57 @@ h1, h2, h3 {
   color: var(--primary-color);
 }
 
-.bg-primary {
-  background-color: var(--primary-color);
-}
-
-.border-primary {
-  border-color: var(--primary-color);
-}
-
-/* Additional primary color utilities */
-.text-primary-hover:hover {
-  color: var(--primary-color);
-}
-
-.bg-primary-hover:hover {
-  background-color: var(--primary-color);
-}
-
-.border-primary-hover:hover {
-  border-color: var(--primary-color);
-}
-
 .text-primary-light {
   color: var(--primary-light);
-}
-
-.bg-primary-light {
-  background-color: var(--primary-light);
-}
-
-.border-primary-light {
-  border-color: var(--primary-light);
 }
 
 .text-primary-dark {
   color: var(--primary-dark);
 }
 
-.bg-primary-dark {
-  background-color: var(--primary-dark);
+.text-on-primary {
+  color: var(--text-on-primary);
 }
 
-.border-primary-dark {
-  border-color: var(--primary-dark);
+.text-on-light {
+  color: var(--text-on-light);
+}
+
+.text-on-dark {
+  color: var(--text-on-dark);
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+}
+
+.bg-primary-light {
+  background-color: var(--primary-light);
+  color: var(--text-on-light);
+}
+
+.bg-primary-dark {
+  background-color: var(--primary-dark);
+  color: var(--text-on-dark);
+}
+
+.border-primary {
+  border-color: var(--primary-color);
+}
+
+/* Hover states */
+.hover\:text-primary:hover {
+  color: var(--primary-color);
+}
+
+.hover\:bg-primary:hover {
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+}
+
+.hover\:border-primary:hover {
+  border-color: var(--primary-color);
 }
 
 /* Silver color utilities */
@@ -88,7 +120,7 @@ h1, h2, h3 {
   color: var(--silver-light);
 }
 
-.text-silver-hover:hover {
+.hover\:text-silver:hover {
   color: var(--silver-light);
 }
 
@@ -1138,4 +1170,32 @@ h1, h2, h3 {
 
 .desktop-nav-item.active {
   animation: active-glow 3s ease-in-out infinite;
+}
+
+/* Ajustes de contraste para elementos específicos */
+.nav-link {
+  color: var(--text-on-primary);
+}
+
+.card-title {
+  color: var(--primary-color);
+}
+
+.card-text {
+  color: var(--text-light);
+}
+
+.footer-text {
+  color: var(--text-on-primary);
+}
+
+/* Ajustes de accesibilidad */
+@media (prefers-contrast: more) {
+  :root {
+    --text-light: var(--text-primary);
+  }
+  
+  p {
+    color: var(--text-primary);
+  }
 }
