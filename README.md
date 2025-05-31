@@ -1,297 +1,324 @@
 # 🌹 Quinceañera Jessica Paola - Sitio Web Responsive
 
-## 📱 Diseño Mobile-First & Responsive
+## 🎨 Paleta de Colores Bordeaux Reserve
 
-Este proyecto ha sido completamente actualizado para ofrecer una experiencia óptima en todos los dispositivos, desde móviles hasta pantallas ultra-wide, con efectos visuales sutiles y elegantes.
+Este elegante sitio web utiliza una paleta de colores refinada con **Bordeaux Reserve** como color principal, creando una atmósfera sofisticada y memorable para la celebración.
+
+### 🎨 Colores Principales
+- **Bordeaux Reserve**: `#960001` (Color principal)
+- **Bordeaux Light**: `#B82629` (Variante clara)
+- **Bordeaux Dark**: `#6A0001` (Variante oscura)
+- **Gold Accent**: `#D4AF37` (Acento dorado)
+- **Background**: `#FFF5F5` (Fondo suave)
 
 ## ✨ Características Principales
 
-### 🎨 Sistema de Diseño Responsive
-
+### 📱 Diseño Mobile-First & Responsive
 - **Mobile-First**: Optimizado primero para dispositivos móviles
 - **Tablet Friendly**: Layouts especiales para tablets (768px - 1024px)
 - **Desktop Enhanced**: Experiencia mejorada para escritorio (1024px+)
 - **Ultra-Wide Support**: Soporte para pantallas grandes (1536px+)
-- **Efectos Sutiles**: Animaciones delicadas y marcos elegantes
 
-### 🖼️ Sistema Visual Elegante
+### 🧭 Sistema de Navegación Inteligente
 
-#### Foto Principal con Marco Elegante
-- Marco con gradiente sutil borgoña-dorado
-- Animación de flotación imperceptible (1px, 8s duración)
-- Efecto glow muy delicado (opacidad 0.1-0.15)
-- Bordes redondeados consistentes (`rounded-2xl`)
-- Animaciones lentas y suaves para elegancia
-
-#### Consistencia en Bordes
-- **Imagen principal**: `rounded-2xl` 
-- **Marco decorativo**: `border-radius: 1rem`
-- **Tarjetas countdown**: `rounded-xl`
-- **Contenedores galería**: `rounded-2xl`
-- **Navegación**: `rounded-lg` a `rounded-2xl`
-
-#### Tipografía Refinada
-- Efectos de brillo removidos para simplicidad
-- Color borgoña (`--primary-color: #800020`) clásico
-- Fuentes elegantes: Great Vibes, Dancing Script, Libre Baskerville
-- Escalado responsive perfecto
-
-### 📐 Breakpoints y Contenedores
-
-```css
-/* Breakpoints */
-- Mobile: < 768px
-- Tablet: 768px - 1023px  
-- Desktop: 1024px - 1279px
-- Large Desktop: 1280px - 1535px
-- Ultra-Wide: 1536px+
-
-/* Contenedores Responsivos */
-.container-responsive {
-  width: 100%;
-  margin: 0 auto;
-  padding: responsive;
-  max-width: variable por breakpoint;
-}
-```
-
-### 🧭 Navegación Adaptiva
-
-#### Móvil (< 1024px)
-- Navegación tipo carrusel en la parte inferior
-- 3 iconos por página con navegación por flechas
-- Indicadores de página activa
+#### Navegación Móvil (< 1024px)
+- Sistema de carrusel con 3 páginas organizadas
+- **Página 1**: Inicio, Ceremonia, Fiesta
+- **Página 2**: Asistencia, Galería
+- **Página 3**: Padrinos, Chambelanes, Regalos
+- Navegación por flechas con indicadores de página
 - Animaciones suaves entre páginas
 
-#### Desktop (1024px+)
-- Navegación horizontal flotante en la parte inferior
-- Todos los iconos visibles simultáneamente
-- Efecto hover elegante
-- Diseño tipo "dock" con glassmorphism
+#### Navegación Desktop (1024px+)
+- Dock flotante en la parte inferior
+- Todos los elementos visibles simultáneamente
+- Efectos hover elegantes con glassmorphism
 
-### 📊 Componentes Responsive
+### 🏗️ Arquitectura del Proyecto
 
-#### Grid Systems
-- **Desktop Grid**: 2 columnas automáticas para contenido
-- **Desktop Grid 3**: 3 columnas para cards/elementos
-- **Tablet Grid**: 2 columnas optimizadas para tablet
-- **Mobile Grid**: 1 columna con stacking
-
-#### Texto Responsive
-- Títulos escalan automáticamente según el dispositivo
-- Espaciado proporcional en cada breakpoint
-- Legibilidad optimizada en todas las pantallas
-
-#### Imágenes Adaptivas
-- Tamaños específicos por dispositivo
-- Optimización para orientación landscape
-- Lazy loading y fallbacks
-
-## 🛠️ Implementación Técnica
-
-### CSS Classes Agregadas
-
-```css
-/* Contenedores */
-.container-responsive
-.content-max-width
-.text-content-width
-.ultra-wide-content
-
-/* Spacing Responsive */
-.desktop-section
-.tablet-section  
-.mobile-section
-
-/* Layouts */
-.desktop-grid
-.desktop-grid-3
-.tablet-grid
-.mobile-countdown
-
-/* Typography */
-.ultra-wide-title
-.ultra-wide-subtitle
-.mobile-title
-.mobile-subtitle
-
-/* Efectos Visuales Sutiles */
-.elegant-photo-frame
-.elegant-photo-frame::before
-.elegant-photo-frame::after
-
-/* Animaciones Delicadas */
-@keyframes photo-glow
-@keyframes photo-float
-@keyframes shimmer
-
-/* Navegación */
-.desktop-nav
-.desktop-nav-list
-.desktop-nav-item
-.desktop-nav-icon
-.desktop-nav-label
-
-/* Utilidades */
-.landscape-adjust
-.landscape-hero-image
-.mobile-hero-image
-.no-print
+#### 📄 Páginas Principales (8)
+```
+src/pages/
+├── Inicio.jsx          # Página principal con hero y countdown
+├── Ceremonia.jsx       # Detalles de la ceremonia religiosa
+├── Fiesta.jsx          # Información de la recepción
+├── Asistencia.jsx      # Formulario de confirmación
+├── Galeria.jsx         # Galería de fotos dinámica
+├── Padrinos.jsx        # Lista de padrinos
+├── Chambelanes.jsx     # Lista de chambelanes
+└── Regalos.jsx         # Información de regalos
 ```
 
-### Efectos Visuales Actualizados
-
-#### Marco Elegante de Foto
-```css
-.elegant-photo-frame {
-  animation: photo-float 8s ease-in-out infinite;
-}
-
-.elegant-photo-frame::before {
-  background: linear-gradient(45deg, 
-    var(--primary-color), 
-    rgba(255, 215, 0, 0.2));
-  animation: shimmer 6s ease-in-out infinite, 
-             photo-glow 8s ease-in-out infinite;
-  border-radius: 1rem;
-}
+#### 🧩 Componentes Activos (9)
+```
+src/components/
+├── Navbar.jsx                  # Navegación principal adaptiva
+├── PageLayout.jsx              # Layout reutilizable para páginas
+├── BetterAnimatedRoutes.jsx    # Sistema de rutas con transiciones
+├── MusicPlayer.jsx             # Reproductor de música de fondo
+├── ModularSwiperGallery.jsx    # Galería con Swiper.js
+├── ThemeToggle.jsx             # Alternador de tema
+├── ScrollToTop.jsx             # Botón scroll hacia arriba
+├── ScrollToTopOnRoute.jsx      # Auto-scroll en cambio de ruta
+└── LoadingSpinner.jsx          # Indicador de carga
 ```
 
-#### Animaciones Sutiles
-- **Flotación**: 1px movimiento, 8s duración
-- **Glow**: Opacidad 0.1-0.15, muy delicado
-- **Shimmer**: 6s ciclo lento
-- **Bordes**: `rounded-2xl` consistente
+#### 🎣 Hooks Personalizados (2)
+```
+src/hooks/
+├── useColorPalette.js          # Gestión de paleta de colores
+└── useGalleryImages.js         # Gestión dinámica de imágenes
+```
 
-### Optimizaciones de Accesibilidad
+#### 🛠️ Utilidades (1)
+```
+src/utils/
+└── imageUtils.js               # Funciones para manejo de imágenes
+```
 
-- **Reduced Motion**: Soporte para `prefers-reduced-motion`
-- **High Contrast**: Optimizado para modo alto contraste
-- **Dark Mode**: Preparado para modo oscuro futuro
-- **Print Styles**: Estilos específicos para impresión
-- **ARIA Labels**: Labels apropiados en navegación
+## 🎨 Sistema de Diseño Unificado
 
-### Performance
+### 📐 Layout Consistente
+Todas las páginas utilizan el componente `PageLayout.jsx` que proporciona:
+- Headers estilizados con tipografía `font-script`
+- Contenedores con efectos `backdrop-blur-sm`
+- Bordes consistentes `border-primary/20`
+- Espaciado y responsive behavior unificado
 
-- **Breakpoint Detection**: JavaScript optimizado para cambio de tamaño
-- **Lazy Components**: Componentes se cargan según el dispositivo
-- **CSS Grid Fallbacks**: Soporte para navegadores antiguos
-- **Minimized Reflows**: Transiciones optimizadas
-- **Efectos GPU**: Animaciones optimizadas para hardware
+### 🖼️ Efectos Visuales
+- **Glassmorphism**: `bg-white/90 backdrop-blur-sm`
+- **Bordes Sutiles**: `border border-primary/20`
+- **Tipografía Elegante**: 
+  - Títulos: `font-script text-primary`
+  - Subtítulos: `font-serif text-primary-light`
+- **Hover Effects**: Transformaciones suaves en tarjetas
 
-## 📱 Experiencia por Dispositivo
+### 📊 Grid Systems Responsive
+```css
+/* Mobile Grid */
+.grid-cols-1          /* 1 columna en móvil */
 
-### Mobile (< 768px)
-- Navegación touch-optimizada
-- Countdown en grid 2x2
-- Imágenes tamaño móvil optimizado
-- Texto legible sin zoom
-- Efectos sutiles adaptados
+/* Tablet Grid */
+.md:grid-cols-2       /* 2 columnas en tablet */
 
-### Tablet (768px - 1023px)
-- Grid híbrido 2 columnas
-- Navegación móvil optimizada
-- Countdown en línea horizontal
-- Spacing intermedio
-- Marco elegante escalado
+/* Desktop Grid */
+.lg:grid-cols-3       /* 3 columnas en desktop */
+```
 
-### Desktop (1024px+)
-- Navegación dock flotante
-- Layouts en 2-3 columnas
-- Hover effects elegantes
-- Aprovechamiento completo del espacio
-- Efectos visuales completos
+## 🎭 Sistema de Galería Dinámico
 
-### Ultra-Wide (1536px+)
-- Contenido centrado con max-width
-- Tipografía escalada premium
-- Grid systems optimizados
-- Experiencia visual mejorada
-
-## 🎨 Sistema de Galería Dinámico
-
-### Estructura de Carpetas
+### 📁 Estructura Organizada
 ```
 public/images/gallery/
-├── sesion-vestido/     # Fotos con vestido formal
-├── sesion-casual/      # Fotos con ropa casual
-├── padrinos/          # Fotos con padrinos/familia
+├── sesion-vestido/     # Fotos formales con vestido
+├── sesion-casual/      # Fotos casuales
+├── padrinos/          # Fotos con padrinos
 └── evento/            # Fotos del evento (futuras)
 ```
 
-### Características de Galería
-- **Swiper.js Integration**: Carrusel fluido con paginación
-- **Coverflow Effect**: Efecto 3D elegante
+### ⚡ Características Técnicas
+- **Carga Dinámica**: Detección automática de imágenes
+- **Swiper.js**: Carrusel fluido con efectos 3D
+- **Responsive Loading**: Optimización por dispositivo
 - **Autoplay Inteligente**: 4s con pausa en interacción
-- **Responsive Images**: Adaptación automática por dispositivo
-- **Dynamic Loading**: Carga automática desde carpetas
 
-## 🚀 Tecnologías Utilizadas
+## 🚀 Tecnologías y Herramientas
 
-- **React 18**: Framework principal
-- **Tailwind CSS**: Utility-first CSS
+### Core Technologies
+- **React 18**: Framework principal con Hooks
+- **React Router**: Navegación SPA con HashRouter
+- **Vite**: Build tool ultrarrápido
+- **Tailwind CSS**: Utility-first CSS framework
+
+### Librerías Especializadas
+- **Swiper.js**: Carruseles y sliders elegantes
+- **Framer Motion**: Animaciones fluidas (en routes)
+
+### Optimizaciones
+- **CSS Custom Properties**: Variables CSS dinámicas
 - **CSS Grid & Flexbox**: Layouts modernos
-- **CSS Custom Properties**: Variables CSS
-- **Swiper.js**: Carruseles elegantes
-- **Responsive Images**: Optimización automática
+- **Lazy Loading**: Carga diferida de imágenes
+- **Tree Shaking**: Eliminación de código no usado
 
-## 📋 Componentes Actualizados
+## 📱 Experiencia por Dispositivo
 
-### Páginas Principales
-- ✅ `Inicio.jsx` - Hero responsive con efectos sutiles
-- ✅ `Ceremonia.jsx` - Layout adaptivo
-- ✅ `Invitaciones.jsx` - Padding móvil optimizado
-- ✅ `Galeria.jsx` - Sistema dinámico de carpetas
-- ✅ `Regalos.jsx` - Simplificado a buzón de dinero
-- ✅ `App.jsx` - Contenedor principal responsive
+### 📱 Mobile (< 768px)
+- Navegación touch-optimizada con carrusel
+- Grid single-column para contenido
+- Countdown en formato 2x2
+- Texto optimizado para lectura móvil
+- Efectos táctiles en botones
 
-### Estilos y Efectos
-- ✅ `index.css` - Sistema responsive completo
-- ✅ Efectos visuales sutiles y elegantes
-- ✅ Bordes redondeados consistentes
-- ✅ Animaciones delicadas optimizadas
+### 📱 Tablet (768px - 1023px)
+- Navegación móvil con mejor espaciado
+- Grid dual-column híbrido
+- Countdown horizontal
+- Aprovechamiento de espacio intermedio
 
-## 🎯 Características Destacadas
+### 🖥️ Desktop (1024px+)
+- Navegación dock flotante
+- Layouts multi-columna (2-3 cols)
+- Hover effects completos
+- Aprovechamiento total del viewport
+- Experiencia premium con efectos visuales
 
-1. **Navegación Inteligente**: Cambia automáticamente entre móvil y desktop
-2. **Efectos Visuales Sutiles**: Marco elegante casi imperceptible
-3. **Tipografía Refinada**: Sin efectos excesivos, elegancia simple
-4. **Bordes Consistentes**: `rounded-2xl` en toda la aplicación
-5. **Galería Dinámica**: Sistema automático de carpetas organizadas
-6. **Performance Optimizada**: Animaciones GPU-aceleradas
+### 🖥️ Ultra-Wide (1536px+)
+- Contenido centrado con max-width
+- Tipografía escalada para pantallas grandes
+- Grid systems optimizados
+- Spacing generoso y elegante
 
-## 🔧 Desarrollo y Personalización
+## ⚙️ Configuración y Desarrollo
 
-Para personalizar los efectos visuales:
+### 🔧 Instalación
+```bash
+# Clonar repositorio
+git clone [repository-url]
 
-1. Ajusta las variables en `.elegant-photo-frame`
-2. Modifica las animaciones en `@keyframes`
-3. Cambia la intensidad del glow y flotación
-4. Mantén la consistencia en `border-radius`
+# Instalar dependencias
+npm install
 
-Para agregar fotos a la galería:
+# Servidor de desarrollo
+npm run dev
 
-1. Coloca imágenes en las carpetas correspondientes
-2. Usa nombres descriptivos (ej: `vestido-01.jpg`)
-3. El sistema las detectará automáticamente
-4. Optimiza para web (formato WebP recomendado)
+# Build para producción
+npm run build
 
-## 📈 Mejoras Futuras
+# Preview del build
+npm run preview
+```
 
+### 📝 Scripts Disponibles
+```json
+{
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "lint": "eslint src --ext js,jsx"
+}
+```
+
+### 🎨 Personalización de Colores
+Edita las variables CSS en `src/index.css`:
+```css
+:root {
+  --primary-color: #960001;      /* Bordeaux Reserve */
+  --primary-light: #B82629;      /* Bordeaux Light */
+  --primary-dark: #6A0001;       /* Bordeaux Dark */
+  --accent-color: #D4AF37;       /* Gold Accent */
+  --secondary-color: #FFF5F5;    /* Background */
+}
+```
+
+### 🖼️ Gestión de Imágenes
+1. **Galería**: Coloca imágenes en las carpetas correspondientes en `public/images/gallery/`
+2. **Backgrounds**: Usa `public/images/backgrounds/` para fondos
+3. **Optimización**: Preferir formato WebP para mejor rendimiento
+
+## 🔄 Limpieza y Optimización Reciente
+
+### ❌ Componentes Eliminados
+- `Invitaciones.jsx` - Sección no requerida
+- `InvitationCard.jsx` - Componente de invitaciones
+- `GiftRegistry.jsx` - Registro no utilizado
+- `PhotoUploader.jsx` - Subidor no necesario
+- `SaveTheDate.jsx` - Componente extra
+- `AnimatedRoutes.jsx` - Duplicado (se usa BetterAnimatedRoutes)
+- Archivos temporales y duplicados
+
+### ✅ Optimizaciones Aplicadas
+- Eliminación de imports no utilizados
+- Limpieza de rutas muertas
+- Navegación reorganizada sin invitaciones
+- Código más limpio y mantenible
+- Mejor rendimiento sin dependencias muertas
+
+## 🎯 Funcionalidades Destacadas
+
+### 🎵 Reproductor de Música
+- Música de fondo opcional
+- Controles elegantes flotantes
+- Autoplay con políticas del navegador
+
+### ⏰ Countdown Dinámico
+- Contador regresivo hasta el evento
+- Actualización en tiempo real
+- Diseño responsive adaptativo
+
+### 📝 Formulario de Asistencia
+- Validación de datos
+- Interfaz amigable
+- Feedback visual inmediato
+
+### 🎁 Lista de Regalos
+- Información de regalos preferidos
+- Diseño elegante con cards
+- Información de contacto
+
+## 🔮 Roadmap Futuro
+
+### Mejoras Planificadas
 - [ ] Modo oscuro completo
-- [ ] Más categorías de galería
-- [ ] PWA features
-- [ ] Optimización para plegables
-- [ ] WebP conversion automática
+- [ ] PWA (Progressive Web App)
+- [ ] Optimización para dispositivos plegables
+- [ ] Más efectos de transición
+- [ ] Sistema de notificaciones
+
+### Optimizaciones Técnicas
+- [ ] Implementación de Service Workers
+- [ ] Lazy loading avanzado
+- [ ] Compresión de imágenes automática
+- [ ] Analytics de uso
+
+## 📊 Métricas y Performance
+
+### Lighthouse Scores (Objetivo)
+- **Performance**: 90+
+- **Accessibility**: 95+
+- **Best Practices**: 90+
+- **SEO**: 85+
+
+### Optimizaciones Implementadas
+- Imágenes optimizadas y lazy loading
+- CSS crítico inline
+- JavaScript optimizado con tree shaking
+- Fonts locales para mejor performance
+
+## 🤝 Contribución
+
+### Estructura de Commits
+```
+feat: nueva funcionalidad
+fix: corrección de errores
+style: cambios de estilo/formato
+refactor: refactorización de código
+docs: actualización de documentación
+```
+
+### Guidelines de Desarrollo
+1. Seguir convenciones de Tailwind CSS
+2. Mantener consistencia en componentes
+3. Documentar cambios importantes
+4. Testear en múltiples dispositivos
 
 ---
 
-*Desarrollado con ❤️ para la celebración de Jessica Paola*
+## 📞 Información del Proyecto
 
-### Últimas Actualizaciones
+**Evento**: Quinceañera de Jessica Paola  
+**Tecnología**: React + Vite + Tailwind CSS  
+**Diseño**: Mobile-First Responsive  
+**Paleta**: Bordeaux Reserve (#960001)  
 
-**Versión 2.1.0 - Efectos Visuales Sutiles**
-- ✅ Efectos de brillo removidos del texto
-- ✅ Marco de foto con animaciones delicadas
-- ✅ Bordes redondeados consistentes
-- ✅ Optimización de performance en animaciones
+---
+
+*Desarrollado con ❤️ para una celebración inolvidable*
+
+### 📋 Última Actualización
+
+**Versión 3.0.0 - Limpieza y Optimización** *(Actual)*
+- ❌ Eliminada sección de invitaciones completa
+- 🧹 Limpieza de 12 archivos no utilizados
+- 🚀 Optimización de navegación y rendimiento
+- 📱 Navegación reorganizada (8 páginas activas)
+- ✨ Código más limpio y mantenible

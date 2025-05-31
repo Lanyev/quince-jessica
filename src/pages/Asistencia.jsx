@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageLayout from '../components/PageLayout';
 
 const Asistencia = () => {
   const [nombre, setNombre] = useState('');
@@ -14,17 +15,15 @@ const Asistencia = () => {
     console.log({ nombre, invitados, telefono, comentarios, asistira });
     setSubmitted(true);
   };
+
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4 py-12 bg-white/90 rounded-lg shadow-lg my-8 content-card">
-        <div className="text-center mb-16">
-          <h1 className="font-script text-6xl md:text-7xl font-bold text-primary mb-3">Confirmación</h1>
-          <p className="font-serif text-2xl md:text-3xl text-primary-light italic">Esperamos contar con tu presencia</p>
-          <div className="flex justify-center mt-6">
-            <div className="w-32 h-1 bg-primary rounded-full"></div>
-          </div>
-        </div>        {submitted ? (
-          <div className="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg text-center border border-primary/20 relative">
+    <PageLayout 
+      title="Confirmación" 
+      subtitle="Esperamos contar con tu presencia"
+    >
+      <div className="max-w-4xl mx-auto">
+        {submitted ? (
+          <div className="max-w-lg mx-auto bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg text-center border border-primary/20 relative content-card">
             {/* Elementos decorativos */}
             <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-primary/30 rounded-tl-xl"></div>
             <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-primary/30 rounded-tr-xl"></div>
@@ -63,8 +62,9 @@ const Asistencia = () => {
               <span>Regresar</span>
             </button>
           </div>
-        ) : (<div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-primary/20">
+        ) : (
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-primary/20 content-card">
               <div className="p-8 relative">
                 {/* Elementos decorativos */}
                 <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-primary/30 rounded-tl-xl"></div>
@@ -117,7 +117,8 @@ const Asistencia = () => {
                       id="nombre"
                       value={nombre}
                       onChange={(e) => setNombre(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-serif bg-white/70"                      required
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-serif bg-white/70"
+                      required
                       placeholder="Tu nombre completo"
                     />
                   </div>
@@ -194,8 +195,10 @@ const Asistencia = () => {
               <p>Por favor confirma tu asistencia antes del 10 de junio de 2025</p>
               <p className="mt-2 text-sm text-primary-light italic">Para cualquier duda, contacta al: (555) 123-4567</p>
             </div>
-          </div>        )}      </div>
-    </div>
+          </div>
+        )}
+      </div>
+    </PageLayout>
   );
 };
 

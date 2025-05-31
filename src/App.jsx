@@ -2,10 +2,9 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import MusicPlayer from './components/MusicPlayer.jsx';
-import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
 import BetterAnimatedRoutes from './components/BetterAnimatedRoutes';
-import ColorPaletteSelector from './components/ColorPaletteSelector';
+import ThemeToggle from './components/ThemeToggle';
 import { getBackgroundImageUrl } from './utils/imageUtils';
 import Inicio from './pages/Inicio';
 import Ceremonia from './pages/Ceremonia';
@@ -15,7 +14,6 @@ import Galeria from './pages/Galeria';
 import Padrinos from './pages/Padrinos';
 import Chambelanes from './pages/Chambelanes';
 import Regalos from './pages/Regalos';
-import Invitaciones from './pages/Invitaciones';
 
 function App() {
   // La ruta a tu archivo de música con ruta relativa para GitHub Pages
@@ -60,12 +58,11 @@ function App() {
             <Route path="/padrinos" element={<Padrinos />} />
             <Route path="/chambelanes" element={<Chambelanes />} />
             <Route path="/regalos" element={<Regalos />} />
-            <Route path="/invitaciones" element={<Invitaciones />} />
           </BetterAnimatedRoutes>
         </div>
         <MusicPlayer audioSrc={audioSrc} />
         <ScrollToTop />
-        <ColorPaletteSelector />
+        <ThemeToggle />
         <footer className="w-full fixed bottom-0 left-0 right-0 z-5 no-print">
           <Navbar />
         </footer>

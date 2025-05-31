@@ -84,7 +84,7 @@ const Inicio = () => {
   return (
     <div className="min-h-screen">
       {/* Crown Decorative Header */}
-      <div className={`crown-header py-8 transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+      <div className={`crown-header py-4 md:py-6 transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
         <div className="flex justify-center">
           <img 
             src="./images/backgrounds/crown1.png" 
@@ -99,122 +99,84 @@ const Inicio = () => {
       </div>
 
       {/* Invitation Header Section */}
-      <div className={`invitation-header container-responsive desktop-section tablet-section mobile-section transition-all duration-500 ease-out bg-white/40 backdrop-blur-sm px-4 sm:px-6 md:px-8 ${isVisible ? 'opacity-85 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-        <div className="content-max-width text-center">
+      <div className="invitation-container mt-2 md:mt-4">
+        <div className="invitation-card">
           {/* Parents Names */}
-          <div className="mb-8">
-            <h2 className="font-script text-4xl md:text-5xl lg:text-6xl xl:text-7xl ultra-wide-subtitle text-primary mb-4 font-medium">
-              Sarai <span className="text-primary-light mx-2">y</span> Omar
-            </h2>
-          </div>
+          <h2 className="parents-names font-script text-4xl md:text-5xl lg:text-6xl text-primary">
+            Sarai <span className="text-primary-light mx-2">y</span> Omar
+          </h2>
 
           {/* Invitation Text */}
-          <div className="mb-12 px-2 sm:px-4">
-            <p className="font-serif text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-content-width max-w-2xl mx-auto">
-              Tienen el honor de invitar a usted y a su apreciable familia<br className="hidden sm:inline" />
-              <span className="sm:hidden"> </span>a la celebración de los XV años de su hija:
-            </p>
+          <p className="invitation-phrase font-serif text-base md:text-lg lg:text-xl text-gray-700">
+            Tienen el honor de invitar a usted y a su apreciable familia<br className="hidden sm:inline" />
+            <span className="sm:hidden"> </span>a la celebración de los XV años de su hija
+          </p>
+
+          {/* Nombre de la Quinceañera */}
+          <h1 className="quinceanera-name font-script">
+            Jessica Paola
+          </h1>
+
+          {/* Imagen Principal */}
+          <div className="quinceanera-photo-container">
+            <div className="photo-frame">
+              <img 
+                src="./images/jessica-main.webp" 
+                alt="Jessica Paola" 
+                className="quinceanera-photo"
+                onError={(e) => {
+                  e.target.src = "https://via.placeholder.com/400x650/800020/FFFFFF?text=Jessica+Paola";
+                }}
+              />
+            </div>
+            {/* Corner Decorations */}
+            <div className="corner-decoration corner-top-left"></div>
+            <div className="corner-decoration corner-top-right"></div>
+            <div className="corner-decoration corner-bottom-left"></div>
+            <div className="corner-decoration corner-bottom-right"></div>
+          </div>
+        </div>
+
+        {/* Decorative Divider */}
+        <div className="section-divider"></div>
+
+        {/* Date and Countdown Section */}
+        <div className="countdown-container">
+          <div className="countdown-title">
+            <h3>26 de Julio, 2025</h3>
           </div>
 
-          {/* Jessica Paola Name - Main Feature */}
-          <div className="mb-16">
-            <h1 className="font-script text-6xl md:text-7xl lg:text-8xl xl:text-9xl ultra-wide-title mobile-title font-bold text-primary leading-none mb-4">
-              Jessica Paola
-            </h1>
-            
-            {/* Theme - Corona */}
-            <div className="mb-8">
-            </div>
-
-            {/* Jessica's Photo - Clean Rectangle with responsive sizing and elegant frame */}
-            <div className="flex justify-center mb-8">
-              <div className="relative group elegant-photo-frame">
-                {/* Photo container - Responsive rectangle shape */}
-                <div className="w-80 h-[520px] mobile-hero-image md:w-96 md:h-[620px] lg:w-[450px] lg:h-[720px] xl:w-[500px] xl:h-[800px] landscape-hero-image overflow-hidden shadow-xl relative group-hover:scale-[1.02] transition-transform duration-700 rounded-2xl">
-                  <img 
-                    src="./images/jessica-main.webp" 
-                    alt="Jessica Paola" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    onError={(e) => {
-                      // Imagen temporal de placeholder si no existe la imagen principal
-                      e.target.src = "https://via.placeholder.com/400x650/800020/FFFFFF?text=Jessica+Paola";
-                    }}
-                  />
-                  
-                  {/* Elegant overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-primary-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* Decorative corners */}
-                  <div className="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute top-2 right-2 w-6 h-6 border-r-2 border-t-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-2 left-2 w-6 h-6 border-l-2 border-b-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Decorative Line with Roses */}
-            <div className="flex justify-center items-center mb-8">
-              <span className="text-primary text-2xl mr-3"></span>
-              <div className="w-32 md:w-48 lg:w-64 h-0.5 bg-primary"></div>
-              <span className="text-primary text-2xl ml-3"></span>
-            </div>
-
-            {/* Date and Event Info */}
-            <div className="space-y-8 font-serif text-gray-700 px-2 sm:px-4">
-              <p className="text-lg md:text-xl lg:text-2xl text-center">
-                <span className="text-primary font-medium">26 de Julio, 2025</span>
-              </p>
-              
-              {/* Countdown Timer - Responsive grid */}
-              <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-primary/20 mx-2 sm:mx-4 md:mx-0">
-                <h3 className="font-script text-2xl md:text-3xl lg:text-4xl text-primary text-center mb-6">
-                  Faltan solo...
-                </h3>
-
-                <div className="grid mobile-countdown tablet-countdown lg:grid-cols-4 gap-3 md:gap-4 text-center">
-                  {/* Days */}
-                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
-                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.days}</div>
-                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
-                      {timeLeft.days === 1 ? 'Día' : 'Días'}
-                    </div>
-                  </div>
-                  
-                  {/* Hours */}
-                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
-                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.hours}</div>
-                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
-                      {timeLeft.hours === 1 ? 'Hora' : 'Horas'}
-                    </div>
-                  </div>
-                  
-                  {/* Minutes */}
-                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
-                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.minutes}</div>
-                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
-                      {timeLeft.minutes === 1 ? 'Minuto' : 'Minutos'}
-                    </div>
-                  </div>
-                  
-                  {/* Seconds */}
-                  <div style={{backgroundColor: '#800020'}} className="text-white rounded-xl p-3 md:p-4 shadow-md min-h-[80px] flex flex-col justify-center">
-                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold">{timeLeft.seconds}</div>
-                    <div className="text-xs md:text-sm font-serif uppercase tracking-wide mt-1">
-                      {timeLeft.seconds === 1 ? 'Segundo' : 'Segundos'}
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-center mt-6 font-script text-lg md:text-xl lg:text-2xl text-primary">
-                  ¡Para mi celebración de XV años!
-                </p>
+          <div className="countdown-grid">
+            {/* Days */}
+            <div className="countdown-item">
+              <div className="number">{timeLeft.days}</div>
+              <div className="label">
+                {timeLeft.days === 1 ? 'Día' : 'Días'}
               </div>
             </div>
             
-            {/* Decorative Line */}
-            <div className="flex justify-center mt-8">
-              <div className="w-32 md:w-48 lg:w-64 h-0.5 bg-primary"></div>
+            {/* Hours */}
+            <div className="countdown-item">
+              <div className="number">{timeLeft.hours}</div>
+              <div className="label">
+                {timeLeft.hours === 1 ? 'Hora' : 'Horas'}
+              </div>
+            </div>
+            
+            {/* Minutes */}
+            <div className="countdown-item">
+              <div className="number">{timeLeft.minutes}</div>
+              <div className="label">
+                {timeLeft.minutes === 1 ? 'Minuto' : 'Minutos'}
+              </div>
+            </div>
+            
+            {/* Seconds */}
+            <div className="countdown-item">
+              <div className="number">{timeLeft.seconds}</div>
+              <div className="label">
+                {timeLeft.seconds === 1 ? 'Segundo' : 'Segundos'}
+              </div>
             </div>
           </div>
         </div>
