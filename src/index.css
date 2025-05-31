@@ -1871,3 +1871,245 @@ p {
     padding: 2rem;
   }
 }
+
+/* ===== ANIMATED BACKGROUND EFFECT ===== */
+
+/* Rainbow Animation Variables */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Base Rainbow Element */
+.rainbow {
+  height: 100vh;
+  width: 0px;
+  top: 0;
+  position: absolute;
+  transform: rotate(10deg);
+  transform-origin: top right;
+  animation: 40s linear infinite moveAcross;
+}
+
+/* Rainbow Variants with Bordeaux/Gold Theme - Más difusos y suaves */
+.rainbow:nth-child(1) {
+  box-shadow: 0 0 200px 100px rgba(212, 175, 55, 0.15), 
+              0 0 150px 75px rgba(150, 0, 1, 0.1),
+              0 0 100px 50px rgba(184, 38, 41, 0.12);
+  animation-delay: -1.8s;
+}
+
+.rainbow:nth-child(2) {
+  box-shadow: 0 0 180px 90px rgba(150, 0, 1, 0.12), 
+              0 0 120px 60px rgba(212, 175, 55, 0.15),
+              0 0 80px 40px rgba(184, 38, 41, 0.1);
+  animation-delay: -3.6s;
+}
+
+.rainbow:nth-child(3) {
+  box-shadow: 0 0 160px 80px rgba(184, 38, 41, 0.13), 
+              0 0 100px 50px rgba(150, 0, 1, 0.1),
+              0 0 60px 30px rgba(212, 175, 55, 0.12);
+  animation-delay: -5.4s;
+}
+
+.rainbow:nth-child(4) {
+  box-shadow: 0 0 140px 70px rgba(212, 175, 55, 0.14), 
+              0 0 90px 45px rgba(184, 38, 41, 0.11),
+              0 0 50px 25px rgba(150, 0, 1, 0.09);
+  animation-delay: -7.2s;
+}
+
+.rainbow:nth-child(5) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -9s;
+}
+
+.rainbow:nth-child(6) {
+  box-shadow: 0 0 100px 50px rgba(184, 38, 41, 0.1), 
+              0 0 70px 35px rgba(212, 175, 55, 0.12),
+              0 0 40px 20px rgba(150, 0, 1, 0.08);
+  animation-delay: -10.8s;
+}
+
+.rainbow:nth-child(7) {
+  box-shadow: 0 0 90px 45px rgba(212, 175, 55, 0.11), 
+              0 0 60px 30px rgba(150, 0, 1, 0.09),
+              0 0 30px 15px rgba(184, 38, 41, 0.1);
+  animation-delay: -12.6s;
+}
+
+.rainbow:nth-child(8) {
+  box-shadow: 0 0 80px 40px rgba(150, 0, 1, 0.1), 
+              0 0 50px 25px rgba(184, 38, 41, 0.11),
+              0 0 25px 12px rgba(212, 175, 55, 0.12);
+  animation-delay: -14.4s;
+}
+
+.rainbow:nth-child(9) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -16.2s;
+}
+
+.rainbow:nth-child(10) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -18s;
+}
+
+.rainbow:nth-child(11) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -19.8s;
+}
+
+.rainbow:nth-child(12) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -21.6s;
+}
+
+.rainbow:nth-child(13) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -23.4s;
+}
+
+.rainbow:nth-child(14) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -25.2s;
+}
+
+.rainbow:nth-child(15) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -27s;
+}
+
+.rainbow:nth-child(16) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -28.8s;
+}
+
+.rainbow:nth-child(17) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -30.6s;
+}
+
+.rainbow:nth-child(18) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -32.4s;
+}
+
+.rainbow:nth-child(19) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -34.2s;
+}
+
+.rainbow:nth-child(20) {
+  box-shadow: 0 0 120px 60px rgba(150, 0, 1, 0.11), 
+              0 0 80px 40px rgba(212, 175, 55, 0.13),
+              0 0 40px 20px rgba(184, 38, 41, 0.1);
+  animation-delay: -36s;
+}
+
+/* Animation Keyframes */
+@keyframes slide {
+  from {
+    right: -25vw;
+  }
+  to {
+    right: 125vw;
+  }
+}
+
+@keyframes moveAcross {
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Background Overlay Elements */
+.bg-overlay-h {
+  box-shadow: 0 0 50vh 40vh rgba(255, 245, 245, 0.95);
+  width: 100vw;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.bg-overlay-v {
+  box-shadow: 0 0 35vw 25vw rgba(255, 245, 245, 0.95);
+  width: 0;
+  height: 100vh;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .rainbow {
+    transform: rotate(15deg);
+  }
+  
+  .rainbow:nth-child(odd) {
+    box-shadow: -130px 0 60px 30px rgba(255, 245, 245, 0.8), 
+                -50px 0 40px 20px rgba(150, 0, 1, 0.25),
+                0 0 40px 20px rgba(212, 175, 55, 0.3), 
+                50px 0 40px 20px rgba(184, 38, 41, 0.25),
+                130px 0 60px 30px rgba(255, 245, 245, 0.8);
+  }
+  
+  .rainbow:nth-child(even) {
+    box-shadow: -130px 0 60px 30px rgba(255, 245, 245, 0.8), 
+                -50px 0 40px 20px rgba(212, 175, 55, 0.3),
+                0 0 40px 20px rgba(150, 0, 1, 0.25), 
+                50px 0 40px 20px rgba(184, 38, 41, 0.25),
+                130px 0 60px 30px rgba(255, 245, 245, 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rainbow {
+    animation: none;
+  }
+}

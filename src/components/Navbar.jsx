@@ -131,10 +131,7 @@ const Navbar = () => {
             <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
           </svg>
         )
-      }
-    ],
-    // Página 2 - Secundarios
-    [
+      },
       {
         to: "/padrinos",
         label: "Padrinos",
@@ -146,7 +143,10 @@ const Navbar = () => {
             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           </svg>
         )
-      },
+      }
+    ],
+    // Página 2 - Secundarios
+    [
       {
         to: "/chambelanes",
         label: "Chambelanes",

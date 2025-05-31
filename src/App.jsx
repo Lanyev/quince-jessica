@@ -1,11 +1,10 @@
 import { HashRouter as Router, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import MusicPlayer from './components/MusicPlayer.jsx';
 import ScrollToTop from './components/ScrollToTop';
 import BetterAnimatedRoutes from './components/BetterAnimatedRoutes';
 import ThemeToggle from './components/ThemeToggle';
-import { getBackgroundImageUrl } from './utils/imageUtils';
+import AnimatedBackground from './components/AnimatedBackground';
 import Inicio from './pages/Inicio';
 import Ceremonia from './pages/Ceremonia';
 import Asistencia from './pages/Asistencia';
@@ -18,36 +17,11 @@ import Regalos from './pages/Regalos';
 function App() {
   // La ruta a tu archivo de música con ruta relativa para GitHub Pages
   const audioSrc = './audio/background-music.mp3'; 
-  
-  // Estado para el fondo personalizado
-  const [bgStyle, setBgStyle] = useState({});
-
-  useEffect(() => {
-    // Puedes cambiar esto a la ruta de tu imagen de fondo cuando la tengas
-    const bgImagePath = getBackgroundImageUrl('bg-pattern.png');
-    
-    // Comprobamos si la imagen existe
-    const img = new Image();
-    img.src = bgImagePath;    img.onload = () => {
-      // Si la imagen carga correctamente, la usamos como fondo
-      setBgStyle({
-        backgroundImage: `url(${bgImagePath})`,
-        backgroundSize: 'cover',
-        backgroundAttachment: 'fixed'
-      });
-    };    img.onerror = () => {
-      // Si hay error, usamos un fondo con patrón sutil
-      setBgStyle({
-        backgroundColor: 'var(--secondary-color)',
-        backgroundImage: `radial-gradient(var(--primary-color) 0.5px, var(--secondary-color) 0.5px)`,
-        backgroundSize: '20px 20px'
-      });
-    };
-  }, []);
 
   return (
     <Router>
-      <div className="App flex flex-col min-h-screen" style={bgStyle}>
+      <div className="App flex flex-col min-h-screen">
+        <AnimatedBackground />
         <div className="flex-grow pb-[65px] lg:pb-[100px]">
           <BetterAnimatedRoutes>
             <Route path="/" element={<Inicio />} />

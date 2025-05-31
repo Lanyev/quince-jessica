@@ -3,17 +3,32 @@ import React from 'react';
 const Fiesta = () => {
   return (
     <div className="min-h-screen">
-      <div className="container-responsive desktop-section tablet-section mobile-section">
-        <div className="content-max-width">
-          <div className="text-center mb-16">
-            <h1 className="font-script text-6xl md:text-7xl lg:text-8xl xl:text-9xl ultra-wide-title mobile-title font-bold text-primary mb-3">Celebración</h1>
-            <p className="font-serif text-2xl md:text-3xl lg:text-4xl text-primary-light italic">¡Es hora de festejar!</p>
+      {/* Crown Decorative Header */}
+      <div className="crown-header py-4 md:py-6">
+        <div className="flex justify-center">
+          <img 
+            src="./images/backgrounds/crown1.png" 
+            alt="Corona decorativa" 
+            className="w-48 h-auto md:w-64 lg:w-72 xl:w-80 object-contain"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="invitation-container mt-2 md:mt-4">
+        <div className="invitation-card">
+          <div className="text-center mb-12">
+            <h1 className="font-script text-4xl md:text-5xl lg:text-6xl text-primary mb-4">Celebración</h1>
+            <p className="font-serif text-xl md:text-2xl lg:text-3xl text-primary-light italic">¡Es hora de festejar!</p>
             <div className="flex justify-center mt-6">
               <div className="w-32 md:w-48 lg:w-64 h-1 bg-primary rounded-full"></div>
             </div>
           </div>
 
-          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden border border-primary/20 content-card">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-primary/20 mb-8">
             <div className="lg:desktop-grid">
               <div className="bg-primary p-8 lg:p-12 flex items-center justify-center">
                 <div className="text-center">
@@ -94,7 +109,7 @@ const Fiesta = () => {
           </div>
           
           {/* Dress Code Section */}
-          <div className="mt-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-8 lg:p-12 border border-primary/20 content-card">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 lg:p-12 border border-primary/20 mb-8">
             <h3 className="text-2xl lg:text-3xl xl:text-4xl font-script font-semibold text-primary text-center mb-8">Código de vestimenta</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="text-center">
@@ -109,7 +124,7 @@ const Fiesta = () => {
           </div>
           
           {/* Additional Information */}
-          <div className="mt-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-8 lg:p-12 border border-primary/20 content-card">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 lg:p-12 border border-primary/20 mb-8">
             <h3 className="text-2xl lg:text-3xl xl:text-4xl font-script font-semibold text-primary text-center mb-8">Información adicional</h3>
             <div className="space-y-4 text-gray-600 font-serif text-base lg:text-lg leading-relaxed">
               <p>El salón cuenta con servicio de barra libre para adultos y bebidas sin alcohol para menores de edad.</p>
@@ -119,11 +134,14 @@ const Fiesta = () => {
           </div>
           
           {/* Footer Message */}
-          <div className="text-center mt-8 text-gray-600 font-serif">
+          <div className="text-center text-gray-600 font-serif">
             <p className="text-base lg:text-lg">¡Tu presencia hará esta celebración aún más especial!</p>
           </div>
         </div>
       </div>
+
+      {/* Additional spacing for navbar clearance */}
+      <div className="h-32 md:h-40"></div>
     </div>
   );
 };

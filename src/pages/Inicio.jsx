@@ -183,7 +183,7 @@ const Inicio = () => {
       </div>
 
       {/* Photo Gallery Collage Section */}
-      <div className="gallery-section bg-white/30 backdrop-blur-sm py-16 relative">
+      <div className="gallery-section bg-white/15 backdrop-blur-sm py-16 relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
           
           {/* Gallery Title */}
@@ -203,7 +203,7 @@ const Inicio = () => {
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
               </div>
             ) : galleryImages.length > 0 ? (
-              <div className="bg-white/35 backdrop-blur-sm rounded-2xl overflow-hidden p-6">
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl overflow-hidden p-6">
                 <Swiper
                   effect={'coverflow'}
                   grabCursor={true}
