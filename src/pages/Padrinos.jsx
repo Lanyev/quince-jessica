@@ -29,87 +29,94 @@ const Padrinos = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8">
-            {/* Padrino de Misa */}
+          {/* Padrinos de Honor */}
+          <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-primary/20">
-              <div className="bg-primary py-3 px-4">
-                <h2 className="text-white text-xl font-script font-semibold">Padrinos de Misa</h2>
+              <div className="bg-white py-4 px-6 border-b border-gray-200">
+                <h2 className="text-gray-800 text-2xl font-script font-semibold text-center">Padrinos de Honor</h2>
               </div>
               <div className="p-6">
-                <div className="mb-5 text-center">
-                  <div className="h-24 w-24 rounded-full bg-primary/10 mx-auto flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Fabian Castañeda</h3>
                   </div>
-                  <h3 className="mt-3 text-lg font-semibold text-primary font-serif">Sr. Roberto González y Sra. María Hernández</h3>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Martha Gutierrez</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Fernando Navarro</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Ana Mancha</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Yesenia de la O</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Virginia Roque</h3>
+                  </div>
                 </div>
-                <p className="text-gray-600 font-serif">
-                  Gracias por ser un ejemplo de amor y compromiso. Su apoyo y guía espiritual han sido fundamentales en mi camino.
+                <p className="text-gray-600 text-center font-serif text-lg">
+                  A mis queridos padrinos de honor, gracias por ser pilares fundamentales en mi vida. Su amor, consejos y apoyo incondicional han sido mi fortaleza. Es un honor tenerlos a mi lado en este día tan especial.
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Padrinos de Anillos */}
+          {/* Padrinos de Regalo Sorpresa */}
+          <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-primary/20">
-              <div className="bg-primary py-3 px-4">
-                <h2 className="text-white text-xl font-script font-semibold">Padrinos de Anillos</h2>
+              <div className="bg-white py-4 px-6 border-b border-gray-200">
+                <h2 className="text-gray-800 text-2xl font-script font-semibold text-center">Padrinos de Regalo Sorpresa</h2>
               </div>
               <div className="p-6">
-                <div className="mb-5 text-center">
-                  <div className="h-24 w-24 rounded-full bg-primary/10 mx-auto flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Cindy Mireles</h3>
                   </div>
-                  <h3 className="mt-3 text-lg font-semibold text-primary font-serif">Sr. Carlos Mendoza y Sra. Ana Juárez</h3>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Fernando Gamon</h3>
+                  </div>
                 </div>
-                <p className="text-gray-600 font-serif">
-                  Les agradezco por aceptar ser parte de esta celebración tan importante. Su presencia hace este día aún más especial.
+                <p className="text-gray-600 text-center font-serif text-lg">
+                  Su generosidad y cariño me llenan de emoción. Gracias por hacer posible esa sorpresa especial que hará de este día un momento aún más mágico e inolvidable.
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Padrinos de Zapatillas */}
+          {/* Padrinos */}
+          <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-primary/20">
-              <div className="bg-primary py-3 px-4">
-                <h2 className="text-white text-xl font-script font-semibold">Padrinos de Zapatillas</h2>
+              <div className="bg-white py-4 px-6 border-b border-gray-200">
+                <h2 className="text-gray-800 text-2xl font-script font-semibold text-center">Padrinos</h2>
               </div>
               <div className="p-6">
-                <div className="mb-5 text-center">
-                  <div className="h-24 w-24 rounded-full bg-primary/10 mx-auto flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Carmen Gonzalez</h3>
                   </div>
-                  <h3 className="mt-3 text-lg font-semibold text-primary font-serif">Sr. Manuel López y Sra. Laura Ramírez</h3>
-                </div>
-                <p className="text-gray-600 font-serif">
-                  Su cariño y apoyo significan mucho para mí. Gracias por acompañarme en este paso tan importante.
-                </p>
-              </div>
-            </div>
-
-            {/* Padrinos de Corona */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-primary/20">
-              <div className="bg-primary py-3 px-4">
-                <h2 className="text-white text-xl font-script font-semibold">Padrinos de Corona</h2>
-              </div>
-              <div className="p-6">
-                <div className="mb-5 text-center">
-                  <div className="h-24 w-24 rounded-full bg-primary/10 mx-auto flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Armando Enriquez</h3>
                   </div>
-                  <h3 className="mt-3 text-lg font-semibold text-primary font-serif">Sr. Diego Martínez y Sra. Patricia Flores</h3>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Ivette Sanchez</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Alan Yeverino</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Guadalupe de La O</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Sonia de la O</h3>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-semibold text-gray-800 font-serif">Gerardo de la O</h3>
+                  </div>
                 </div>
-                <p className="text-gray-600 font-serif">
-                  Agradezco inmensamente su generosidad y el tiempo que han dedicado para hacer esta celebración posible.
+                <p className="text-gray-600 text-center font-serif text-lg">
+                  A cada uno de ustedes, mis queridos padrinos, les agradezco de corazón por acompañarme en esta etapa tan importante. Su presencia, cariño y apoyo hacen que este momento sea perfecto.
                 </p>
               </div>
             </div>
